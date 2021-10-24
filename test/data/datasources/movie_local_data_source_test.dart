@@ -97,4 +97,33 @@ void main() {
       expect(result, [testMovieTable]);
     });
   });
+
+  group('cache now playing movies', () {
+    test('should call database helper to save data', () async {
+      // act
+      await dataSource.cacheNowPlayingMovies([testMovieCache]);
+      // assert
+
+      verify(mockDatabaseHelper.clearCache('now playing'));
+      verify(mockDatabaseHelper
+          .insertCacheTransaction([testMovieCache], 'now playing'));
+    });
+
+    final testMovieCacheMap = {
+      'id': 557,
+      'overview':'After being bitten by a genetically altered spider, nerdy high school student Peter Parker is endowed with amazing powers to become the Amazing superhero known as Spider-Man.',
+      'posterPath': '/rweIrveL43TaxUN0akQEaAXL6x0.jpg',
+      'title': 'Spider-Man',
+    };
+
+    test('should return list of movies from db when data exist', () async {
+      // arrange
+      when(mockDatabaseHelper.getCacheMovies('now playing'))
+          .thenAnswer((_) async => [testMovieCacheMap]);
+      // act
+      final result = await dataSource.getCachedNowPlayingMovies();
+      // assert
+      expect(result, [testMovieCache]);
+    });
+  });
 }
