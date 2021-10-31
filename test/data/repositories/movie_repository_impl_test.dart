@@ -585,6 +585,46 @@ void main() {
     });
   });
 
+  group('Popular Tvs',(){
+    test('should return movie list when call to data source is success',
+            () async {
+          // arrange
+          when(mockRemoteDataSource.getPopularTvs())
+              .thenAnswer((_) async => tTvModelList);
+          // act
+          final result = await repository.getPopularTvs();
+          // assert
+          /* workaround to test List in Right. Issue: https://github.com/spebbe/dartz/issues/80 */
+          final resultList = result.getOrElse(() => []);
+          expect(resultList, tTvList);
+        });
+
+    test(
+        'should return server failure when call to data source is unsuccessful',
+            () async {
+          // arrange
+          when(mockRemoteDataSource.getPopularTvs())
+              .thenThrow(ServerException());
+          // act
+          final result = await repository.getPopularTvs();
+          // assert
+          expect(result, Left(ServerFailure('')));
+        });
+
+    test(
+        'should return connection failure when device is not connected to the internet',
+            () async {
+          // arrange
+          when(mockRemoteDataSource.getPopularTvs())
+              .thenThrow(SocketException('Failed to connect to the network'));
+          // act
+          final result = await repository.getPopularTvs();
+          // assert
+          expect(
+              result, Left(ConnectionFailure('Failed to connect to the network')));
+        });
+  });
+
   group('Top Rated Tvs', () {
     test('should return tv list when call to data source is successful',
         () async {

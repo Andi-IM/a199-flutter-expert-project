@@ -85,7 +85,6 @@ void main() {
       verify(mockGetMovieDetail.execute(tId));
       verify(mockGetMovieRecommendations.execute(tId));
     });
-
     test('should change state to Loading when usecase is called', () {
       // arrange
       _arrangeUsecase();
@@ -95,7 +94,6 @@ void main() {
       expect(provider.movieState, RequestState.Loading);
       expect(listenerCallCount, 1);
     });
-
     test('should change movie when data is gotten successfully', () async {
       // arrange
       _arrangeUsecase();
@@ -106,7 +104,6 @@ void main() {
       expect(provider.movie, testMovieDetail);
       expect(listenerCallCount, 3);
     });
-
     test('should change recommendation movies when data is gotten successfully',
         () async {
       // arrange
@@ -129,7 +126,6 @@ void main() {
       verify(mockGetMovieRecommendations.execute(tId));
       expect(provider.movieRecommendations, tMovies);
     });
-
     test('should update recommendation state when data is gotten successfully',
         () async {
       // arrange
@@ -140,7 +136,6 @@ void main() {
       expect(provider.recommendationState, RequestState.Loaded);
       expect(provider.movieRecommendations, tMovies);
     });
-
     test('should update error message when request in successful', () async {
       // arrange
       when(mockGetMovieDetail.execute(tId))
@@ -164,7 +159,6 @@ void main() {
       // assert
       expect(provider.isAddedToWatchlist, true);
     });
-
     test('should execute save watchlist when function called', () async {
       // arrange
       when(mockSaveWatchlist.execute(testMovieDetail))
@@ -176,7 +170,6 @@ void main() {
       // assert
       verify(mockSaveWatchlist.execute(testMovieDetail));
     });
-
     test('should execute remove watchlist when function called', () async {
       // arrange
       when(mockRemoveWatchlist.execute(testMovieDetail))
@@ -188,7 +181,6 @@ void main() {
       // assert
       verify(mockRemoveWatchlist.execute(testMovieDetail));
     });
-
     test('should update watchlist status when add watchlist success', () async {
       // arrange
       when(mockSaveWatchlist.execute(testMovieDetail))
@@ -203,7 +195,6 @@ void main() {
       expect(provider.watchlistMessage, 'Added to Watchlist');
       expect(listenerCallCount, 1);
     });
-
     test('should update watchlist message when add watchlist failed', () async {
       // arrange
       when(mockSaveWatchlist.execute(testMovieDetail))
@@ -212,6 +203,32 @@ void main() {
           .thenAnswer((_) async => false);
       // act
       await provider.addWatchlist(testMovieDetail);
+      // assert
+      expect(provider.watchlistMessage, 'Failed');
+      expect(listenerCallCount, 1);
+    });
+    test('should update watchlist status when remove watchlist success', () async {
+      // arrange
+      when(mockRemoveWatchlist.execute(testMovieDetail))
+          .thenAnswer((_) async => Right('Removed from Watchlist'));
+      when(mockGetWatchlistStatus.execute(testMovieDetail.id))
+          .thenAnswer((_) async => false);
+      // act
+      await provider.removeFromWatchlist(testMovieDetail);
+      // assert
+      verify(mockGetWatchlistStatus.execute(testMovieDetail.id));
+      expect(provider.isAddedToWatchlist, false);
+      expect(provider.watchlistMessage, 'Removed from Watchlist');
+      expect(listenerCallCount, 1);
+    });
+    test('should update watchlist message when remove watchlist failed', () async {
+      // arrange
+      when(mockRemoveWatchlist.execute(testMovieDetail))
+          .thenAnswer((_) async => Left(DatabaseFailure('Failed')));
+      when(mockGetWatchlistStatus.execute(testMovieDetail.id))
+          .thenAnswer((_) async => true);
+      // act
+      await provider.removeFromWatchlist(testMovieDetail);
       // assert
       expect(provider.watchlistMessage, 'Failed');
       expect(listenerCallCount, 1);
