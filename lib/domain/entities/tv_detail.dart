@@ -1,3 +1,4 @@
+import 'package:ditonton/domain/entities/genre.dart';
 import 'package:equatable/equatable.dart';
 
 class TvDetail extends Equatable {
@@ -10,7 +11,7 @@ class TvDetail extends Equatable {
     required this.overview,
     required this.firstAirDate,
     required this.originCountry,
-    required this.genreIds,
+    required this.genres,
     required this.originalLanguage,
     required this.voteCount,
     required this.name,
@@ -22,10 +23,10 @@ class TvDetail extends Equatable {
   final int id;
   final String? backdropPath;
   final double voteAverage;
+  final List<Genre> genres;
   final String overview;
   final String? firstAirDate;
   final List<String> originCountry;
-  final List<int> genreIds;
   final String originalLanguage;
   final int voteCount;
   final String name;
@@ -38,10 +39,10 @@ class TvDetail extends Equatable {
         id,
         backdropPath,
         voteAverage,
+        genres,
         overview,
         firstAirDate,
         originCountry,
-        genreIds,
         originalLanguage,
         voteCount,
         name,

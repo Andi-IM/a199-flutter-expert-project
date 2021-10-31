@@ -1,7 +1,10 @@
 import 'package:ditonton/data/models/movie_table.dart';
+import 'package:ditonton/data/models/tv_table.dart';
 import 'package:ditonton/domain/entities/genre.dart';
 import 'package:ditonton/domain/entities/movie.dart';
 import 'package:ditonton/domain/entities/movie_detail.dart';
+import 'package:ditonton/domain/entities/tv.dart';
+import 'package:ditonton/domain/entities/tv_detail.dart';
 
 final testMovie = Movie(
   adult: false,
@@ -80,4 +83,82 @@ final testMovieMap = {
   'overview': 'overview',
   'posterPath': 'posterPath',
   'title': 'title',
+};
+
+final testTv = Tv(
+  posterPath: "posterPath",
+  popularity: 1,
+  id: 1,
+  backdropPath: "backdropPath",
+  voteAverage: 1,
+  overview: "overview",
+  firstAirDate: "firstAirDate",
+  originCountry: [],
+  genreIds: [1, 2, 3],
+  originalLanguage: "originalLanguage",
+  voteCount: 1,
+  name: "name",
+  originalName: "originalName",
+);
+
+final testTvList = [testTv];
+
+final testTvDetail = TvDetail(
+  posterPath: "posterPath",
+  popularity: 100.0,
+  id: 1,
+  backdropPath: "backdropPath",
+  voteAverage: 1,
+  overview: "overview",
+  firstAirDate: "2020-03-03",
+  genres: [Genre(id: 1, name: 'Action')],
+  originCountry: ["US"],
+  originalLanguage: "JP",
+  voteCount: 1,
+  name: "name",
+  originalName: "originalName",
+);
+
+final testTvCache = TvTable(
+  id: 31917,
+  name: 'Pretty Little Liars',
+  overview: 'Based on the Pretty Little Liars series of young adult novels by Sara Shepard',
+  posterPath: '/vC324sdfcS313vh9QXwijLIHPJp.jpg',
+);
+
+final testTvCacheList = [testTvCache];
+
+final testTvCacheMap = {
+  'id': 31917,
+  'name': 'Pretty Little Liars',
+  'overview': 'Based on the Pretty Little Liars series of young adult novels by Sara Shepard',
+  'posterPath': '/vC324sdfcS313vh9QXwijLIHPJp.jpg',
+};
+
+final testTvFromCache = Tv.watchlist(
+  id: 31917,
+  name: 'Pretty Little Liars',
+  overview: 'Based on the Pretty Little Liars series of young adult novels by Sara Shepard',
+  posterPath: '/vC324sdfcS313vh9QXwijLIHPJp.jpg',
+);
+
+final testWatchlistTv = Tv.watchlist(
+  id: 1,
+  name: 'name',
+  posterPath: 'posterPath',
+  overview: 'overview',
+);
+
+final testTvTable = TvTable(
+  id: 1,
+  name: 'name',
+  posterPath: 'posterPath',
+  overview: 'overview',
+);
+
+final testTvMap = {
+  'id': 1,
+  'name': 'name',
+  'overview': 'overview',
+  'posterPath': 'posterPath',
 };
