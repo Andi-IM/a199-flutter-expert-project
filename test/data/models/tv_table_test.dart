@@ -1,5 +1,7 @@
+import 'package:ditonton/data/models/season_model.dart';
 import 'package:ditonton/data/models/tv_model.dart';
 import 'package:ditonton/data/models/tv_table.dart';
+import 'package:ditonton/domain/entities/genre.dart';
 import 'package:ditonton/domain/entities/tv.dart';
 import 'package:ditonton/domain/entities/tv_detail.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -29,19 +31,31 @@ void main() {
   );
 
   final tTvDetail = TvDetail(
-    posterPath: "/path.jpg",
-    popularity: 1,
+    posterPath: '/path.jpg',
+    popularity: 5.0,
     id: 1,
-    backdropPath: "backdropPath",
-    voteAverage: 1,
-    overview: "overview",
-    firstAirDate: "firstAirDate",
-    originCountry: [],
-    originalLanguage: "originalLanguage",
+    backdropPath: 'backdropPath',
+    voteAverage: 4.0,
+    overview: 'overview',
+    firstAirDate: '2020-02-02',
+    originCountry: ['us'],
+    genres: [Genre(id: 1, name: 'action')],
+    originalLanguage: 'en',
     voteCount: 1,
-    name: "name",
-    originalName: "originalName",
-    genres: [],
+    name: 'name',
+    originalName: 'originalName',
+    episodeRunTime: [10],
+    seasons: [
+      SeasonModel(
+        airDate: '2020-02-02',
+        episodeCount: 12,
+        id: 11,
+        name: 'name',
+        overview: 'overview',
+        posterPath: '/path.jpg',
+        seasonNumber: 1,
+      )
+    ],
   );
 
   final tTvMap = {

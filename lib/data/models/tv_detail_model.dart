@@ -74,8 +74,8 @@ class TvDetailResponse extends Equatable {
         overview: json["overview"],
         popularity: json["popularity"].toDouble(),
         posterPath: json["poster_path"],
-        seasons:
-            List<SeasonModel>.from(json["seasons"].map((x) => SeasonModel.fromJson(x))),
+        seasons: List<SeasonModel>.from(
+            json["seasons"].map((x) => SeasonModel.fromJson(x))),
         status: json["status"],
         tagline: json["tagline"],
         type: json["type"],
@@ -113,6 +113,8 @@ class TvDetailResponse extends Equatable {
     return TvDetail(
       posterPath: this.posterPath,
       popularity: this.popularity,
+      seasons: this.seasons,
+      episodeRunTime: this.episodeRunTime,
       id: this.id,
       backdropPath: this.backdropPath,
       voteAverage: this.voteAverage,

@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ditonton/common/constants.dart';
 import 'package:ditonton/common/state_enum.dart';
 import 'package:ditonton/domain/entities/genre.dart';
+import 'package:ditonton/domain/entities/season.dart';
 import 'package:ditonton/domain/entities/tv.dart';
 import 'package:ditonton/domain/entities/tv_detail.dart';
 import 'package:ditonton/presentation/provider/tv_detail_notifier.dart';
@@ -155,7 +156,7 @@ class DetailContent extends StatelessWidget {
                               _showGenres(tv.genres),
                             ),
                             Text(
-                              _showDuration(tv.id),
+                              _showDuration(tv.episodeRunTime.first),
                             ),
                             Row(
                               children: [
@@ -179,6 +180,13 @@ class DetailContent extends StatelessWidget {
                             Text(
                               tv.overview,
                             ),
+                            SizedBox(height: 16),
+                            Text(
+                              'Seasons',
+                              style: kHeading6,
+                            ),
+                            _showSeasons(
+                                tv.seasons.map((e) => e.toEntity()).toList()),
                             SizedBox(height: 16),
                             Text(
                               'Recommendations',
@@ -275,6 +283,19 @@ class DetailContent extends StatelessWidget {
           ),
         )
       ],
+    );
+  }
+
+  Widget _showSeasons(List<Season> seasons) {
+    return Container(
+      child: ListView.builder(
+        itemCount: seasons.length,
+        itemBuilder: (context, index){
+          return ListTile(
+
+          );
+        },
+      ),
     );
   }
 

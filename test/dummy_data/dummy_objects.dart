@@ -1,4 +1,5 @@
 import 'package:ditonton/data/models/movie_table.dart';
+import 'package:ditonton/data/models/season_model.dart';
 import 'package:ditonton/data/models/tv_table.dart';
 import 'package:ditonton/domain/entities/genre.dart';
 import 'package:ditonton/domain/entities/movie.dart';
@@ -104,25 +105,38 @@ final testTv = Tv(
 final testTvList = [testTv];
 
 final testTvDetail = TvDetail(
-  posterPath: "posterPath",
+  posterPath: 'posterPath',
   popularity: 100.0,
   id: 1,
-  backdropPath: "backdropPath",
-  voteAverage: 1,
-  overview: "overview",
-  firstAirDate: "2020-03-03",
-  genres: [Genre(id: 1, name: 'Action')],
-  originCountry: ["US"],
-  originalLanguage: "JP",
+  backdropPath: 'backdropPath',
+  voteAverage: 1.0,
+  overview: 'overview',
+  firstAirDate: '2020-03-03',
+  originCountry: ['US'],
+  genres: [Genre(id: 1, name: 'action')],
+  originalLanguage: 'JP',
   voteCount: 1,
-  name: "name",
-  originalName: "originalName",
+  name: 'name',
+  originalName: 'originalName',
+  episodeRunTime: [1,2,3,4],
+  seasons: [
+    SeasonModel(
+      airDate: '2020-03-03',
+      episodeCount: 12,
+      id: 11,
+      name: 'name',
+      overview: 'overview',
+      posterPath: '/path.jpg',
+      seasonNumber: 1,
+    )
+  ],
 );
 
 final testTvCache = TvTable(
   id: 31917,
   name: 'Pretty Little Liars',
-  overview: 'Based on the Pretty Little Liars series of young adult novels by Sara Shepard',
+  overview:
+      'Based on the Pretty Little Liars series of young adult novels by Sara Shepard',
   posterPath: '/vC324sdfcS313vh9QXwijLIHPJp.jpg',
 );
 
@@ -131,14 +145,16 @@ final testTvCacheList = [testTvCache];
 final testTvCacheMap = {
   'id': 31917,
   'name': 'Pretty Little Liars',
-  'overview': 'Based on the Pretty Little Liars series of young adult novels by Sara Shepard',
+  'overview':
+      'Based on the Pretty Little Liars series of young adult novels by Sara Shepard',
   'posterPath': '/vC324sdfcS313vh9QXwijLIHPJp.jpg',
 };
 
 final testTvFromCache = Tv.watchlist(
   id: 31917,
   name: 'Pretty Little Liars',
-  overview: 'Based on the Pretty Little Liars series of young adult novels by Sara Shepard',
+  overview:
+      'Based on the Pretty Little Liars series of young adult novels by Sara Shepard',
   posterPath: '/vC324sdfcS313vh9QXwijLIHPJp.jpg',
 );
 

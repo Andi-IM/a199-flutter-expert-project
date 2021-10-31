@@ -6,6 +6,7 @@ import 'package:ditonton/common/failure.dart';
 import 'package:ditonton/data/models/genre_model.dart';
 import 'package:ditonton/data/models/movie_detail_model.dart';
 import 'package:ditonton/data/models/movie_model.dart';
+import 'package:ditonton/data/models/season_model.dart';
 import 'package:ditonton/data/models/tv_detail_model.dart';
 import 'package:ditonton/data/models/tv_model.dart';
 import 'package:ditonton/data/repositories/movie_repository_impl.dart';
@@ -585,44 +586,43 @@ void main() {
     });
   });
 
-  group('Popular Tvs',(){
+  group('Popular Tvs', () {
     test('should return movie list when call to data source is success',
-            () async {
-          // arrange
-          when(mockRemoteDataSource.getPopularTvs())
-              .thenAnswer((_) async => tTvModelList);
-          // act
-          final result = await repository.getPopularTvs();
-          // assert
-          /* workaround to test List in Right. Issue: https://github.com/spebbe/dartz/issues/80 */
-          final resultList = result.getOrElse(() => []);
-          expect(resultList, tTvList);
-        });
+        () async {
+      // arrange
+      when(mockRemoteDataSource.getPopularTvs())
+          .thenAnswer((_) async => tTvModelList);
+      // act
+      final result = await repository.getPopularTvs();
+      // assert
+      /* workaround to test List in Right. Issue: https://github.com/spebbe/dartz/issues/80 */
+      final resultList = result.getOrElse(() => []);
+      expect(resultList, tTvList);
+    });
 
     test(
         'should return server failure when call to data source is unsuccessful',
-            () async {
-          // arrange
-          when(mockRemoteDataSource.getPopularTvs())
-              .thenThrow(ServerException());
-          // act
-          final result = await repository.getPopularTvs();
-          // assert
-          expect(result, Left(ServerFailure('')));
-        });
+        () async {
+      // arrange
+      when(mockRemoteDataSource.getPopularTvs()).thenThrow(ServerException());
+      // act
+      final result = await repository.getPopularTvs();
+      // assert
+      expect(result, Left(ServerFailure('')));
+    });
 
     test(
         'should return connection failure when device is not connected to the internet',
-            () async {
-          // arrange
-          when(mockRemoteDataSource.getPopularTvs())
-              .thenThrow(SocketException('Failed to connect to the network'));
-          // act
-          final result = await repository.getPopularTvs();
-          // assert
-          expect(
-              result, Left(ConnectionFailure('Failed to connect to the network')));
-        });
+        () async {
+      // arrange
+      when(mockRemoteDataSource.getPopularTvs())
+          .thenThrow(SocketException('Failed to connect to the network'));
+      // act
+      final result = await repository.getPopularTvs();
+      // assert
+      expect(
+          result, Left(ConnectionFailure('Failed to connect to the network')));
+    });
   });
 
   group('Top Rated Tvs', () {
@@ -682,7 +682,17 @@ void main() {
       overview: 'overview',
       popularity: 100,
       posterPath: 'posterPath',
-      seasons: [],
+      seasons: [
+        SeasonModel(
+          airDate: '2020-03-03',
+          episodeCount: 12,
+          id: 11,
+          name: 'name',
+          overview: 'overview',
+          posterPath: '/path.jpg',
+          seasonNumber: 1,
+        ),
+      ],
       status: 'Aired',
       tagline: 'Dont Trust',
       type: 'Tv Show',
@@ -692,7 +702,7 @@ void main() {
     );
 
     test(
-        'should return Movie data when the call to remote data source is successful',
+        'should return Tv Show data when the call to remote data source is successful',
         () async {
       // arrange
       when(mockRemoteDataSource.getTvDetail(tId))
@@ -701,7 +711,7 @@ void main() {
       final result = await repository.getTvDetail(tId);
       // assert
       verify(mockRemoteDataSource.getTvDetail(tId));
-      expect(result, equals(Right(testTvDetail)));
+      expect(result, equals(Right(tTvResponse.toEntity())));
     });
 
     test(

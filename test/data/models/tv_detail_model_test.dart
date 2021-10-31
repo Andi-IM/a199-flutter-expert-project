@@ -7,10 +7,10 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   final tTvDetailModel = TvDetailResponse(
-    posterPath: 'posterPath',
+    posterPath: '/path.jpg',
     popularity: 5.0,
     id: 1,
-    backdropPath: 'backdropPath',
+    backdropPath: '/path.jpg',
     voteAverage: 4.0,
     overview: 'overview',
     firstAirDate: '2020-02-02',
@@ -33,7 +33,7 @@ void main() {
         id: 12,
         name: 'name',
         overview: 'overview',
-        posterPath: 'posterPath',
+        posterPath: '/path.jpg',
         seasonNumber: 1,
       ),
     ],
@@ -42,10 +42,10 @@ void main() {
     type: 'type',
   );
   final tTvDetail = TvDetail(
-    posterPath: 'posterPath',
+    posterPath: '/path.jpg',
     popularity: 5.0,
     id: 1,
-    backdropPath: 'backdropPath',
+    backdropPath: '/path.jpg',
     voteAverage: 4.0,
     overview: 'overview',
     firstAirDate: '2020-02-02',
@@ -55,9 +55,21 @@ void main() {
     voteCount: 1,
     name: 'name',
     originalName: 'originalName',
+    episodeRunTime: [10],
+    seasons: [
+      SeasonModel(
+        airDate: '2020-02-02',
+        episodeCount: 12,
+        id: 12,
+        name: 'name',
+        overview: 'overview',
+        posterPath: '/path.jpg',
+        seasonNumber: 1,
+      )
+    ],
   );
   final tTvDetailMap = {
-    'backdrop_path': 'backdropPath',
+    'backdrop_path': '/path.jpg',
     'episode_run_time': [10],
     'first_air_date': '2020-02-02',
     'origin_country': ['us'],
@@ -73,7 +85,7 @@ void main() {
     'original_name': 'originalName',
     'overview': 'overview',
     'popularity': 5.0,
-    'poster_path': 'posterPath',
+    'poster_path': '/path.jpg',
     'seasons': [
       {
         'air_date': '2020-02-02',
@@ -81,7 +93,7 @@ void main() {
         'id': 12,
         'name': 'name',
         'overview': 'overview',
-        'poster_path': 'posterPath',
+        'poster_path': '/path.jpg',
         'season_number': 1
       }
     ],
@@ -92,7 +104,7 @@ void main() {
     'vote_count': 1
   };
 
-  group('Tv Detail',(){
+  group('Tv Detail', () {
     test('should be a subclass of Tv Detail entity', () async {
       final result = tTvDetailModel.toEntity();
       expect(result, tTvDetail);
