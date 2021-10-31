@@ -85,7 +85,6 @@ void main() {
       verify(mockGetMovieDetail.execute(tId));
       verify(mockGetMovieRecommendations.execute(tId));
     });
-
     test('should change state to Loading when usecase is called', () {
       // arrange
       _arrangeUsecase();
@@ -95,7 +94,6 @@ void main() {
       expect(provider.movieState, RequestState.Loading);
       expect(listenerCallCount, 1);
     });
-
     test('should change movie when data is gotten successfully', () async {
       // arrange
       _arrangeUsecase();
@@ -106,7 +104,6 @@ void main() {
       expect(provider.movie, testMovieDetail);
       expect(listenerCallCount, 3);
     });
-
     test('should change recommendation movies when data is gotten successfully',
         () async {
       // arrange
@@ -129,7 +126,6 @@ void main() {
       verify(mockGetMovieRecommendations.execute(tId));
       expect(provider.movieRecommendations, tMovies);
     });
-
     test('should update recommendation state when data is gotten successfully',
         () async {
       // arrange
@@ -140,7 +136,6 @@ void main() {
       expect(provider.recommendationState, RequestState.Loaded);
       expect(provider.movieRecommendations, tMovies);
     });
-
     test('should update error message when request in successful', () async {
       // arrange
       when(mockGetMovieDetail.execute(tId))
