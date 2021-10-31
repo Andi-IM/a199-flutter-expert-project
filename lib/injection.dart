@@ -30,6 +30,12 @@ import 'package:ditonton/presentation/provider/movie_list_notifier.dart';
 import 'package:ditonton/presentation/provider/movie_search_notifier.dart';
 import 'package:ditonton/presentation/provider/popular_movies_notifier.dart';
 import 'package:ditonton/presentation/provider/top_rated_movies_notifier.dart';
+import 'package:ditonton/presentation/provider/tv_detail_notifier.dart';
+import 'package:ditonton/presentation/provider/tv_list_notifier.dart';
+import 'package:ditonton/presentation/provider/tv_popular_notifier.dart';
+import 'package:ditonton/presentation/provider/tv_search_notifier.dart';
+import 'package:ditonton/presentation/provider/tv_top_rated_notifier.dart';
+import 'package:ditonton/presentation/provider/tv_watchlist_notifier.dart';
 import 'package:ditonton/presentation/provider/watchlist_movie_notifier.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
@@ -72,6 +78,42 @@ void init() {
   locator.registerFactory(
     () => WatchlistMovieNotifier(
       getWatchlistMovies: locator(),
+    ),
+  );
+  locator.registerFactory(
+    () => TvListProvider(
+      getTvOnTheAir: locator(),
+      getTvPopular: locator(),
+      getTvTopRated: locator(),
+    ),
+  );
+  locator.registerFactory(
+    () => TvDetailNotifier(
+      getTvDetail: locator(),
+      getTvRecommendations: locator(),
+      getTvWatchlistStatus: locator(),
+      saveTvWatchlist: locator(),
+      removeTvWatchlist: locator(),
+    ),
+  );
+  locator.registerFactory(
+    () => TvPopularNotifier(
+      getTvPopular: locator(),
+    ),
+  );
+  locator.registerFactory(
+    () => TvSearchNotifier(
+      searchTvs: locator(),
+    ),
+  );
+  locator.registerFactory(
+    () => TvTopRatedNotifier(
+      getTvTopRated: locator(),
+    ),
+  );
+  locator.registerFactory(
+    () => TvWatchlistNotifier(
+      getTvWatchlist: locator(),
     ),
   );
 
