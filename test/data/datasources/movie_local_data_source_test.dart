@@ -110,7 +110,6 @@ void main() {
       verify(mockDatabaseHelper
           .insertCacheTransaction([testMovieCache], 'now playing'));
     });
-
     test('should return list of movies from db when data exist', () async {
       // arrange
       when(mockDatabaseHelper.getCacheMovies('now playing'))
@@ -120,7 +119,6 @@ void main() {
       // assert
       expect(result, [testMovieCache]);
     });
-
     test('should throw CacheException when cache data is not exist', () async {
       // arrange
       when(mockDatabaseHelper.getCacheMovies('now playing'))
@@ -204,7 +202,35 @@ void main() {
   });
 
   group('cache now airing tvs', (){
-
+    test('should call database helper to save data', () async {
+      // arrange
+      when(mockDatabaseHelper.clearTvCache('on the air'))
+          .thenAnswer((_) async => 1);
+      // act
+      await dataSource.cacheNowAiringTvs([testTvCache]);
+      // assert
+      verify(mockDatabaseHelper.clearTvCache('on the air'));
+      verify(mockDatabaseHelper
+          .insertTvCacheTransaction([testTvCache], 'on the air'));
+    });
+    test('should return list of movies from db when data exist', () async {
+      // arrange
+      when(mockDatabaseHelper.getCacheTvs('on the air'))
+          .thenAnswer((_) async => [testTvCacheMap]);
+      // act
+      final result = await dataSource.getCachedNowAiringTvs();
+      // assert
+      expect(result, [testTvCache]);
+    });
+    test('should throw CacheException when cache data is not exist', () async {
+      // arrange
+      when(mockDatabaseHelper.getCacheTvs('on the air'))
+          .thenAnswer((_) async => []);
+      // act
+      final call = dataSource.getCachedNowAiringTvs();
+      // assert
+      expect(() => call, throwsA(isA<CacheException>()));
+    });
   });
 
   group('get watchlist tv', (){
