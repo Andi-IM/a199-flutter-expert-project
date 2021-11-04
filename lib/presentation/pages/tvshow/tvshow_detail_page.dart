@@ -5,6 +5,7 @@ import 'package:ditonton/domain/entities/genre.dart';
 import 'package:ditonton/domain/entities/season.dart';
 import 'package:ditonton/domain/entities/tv.dart';
 import 'package:ditonton/domain/entities/tv_detail.dart';
+import 'package:ditonton/presentation/pages/tvshow/watchlist_tv_page.dart';
 import 'package:ditonton/presentation/provider/tv_detail_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -277,7 +278,8 @@ class DetailContent extends StatelessWidget {
             child: IconButton(
               icon: Icon(Icons.arrow_back),
               onPressed: () {
-                Navigator.pop(context);
+                Navigator.popAndPushNamed(
+                    context, WatchlistTvShowsPage.ROUTE_NAME);
               },
             ),
           ),
@@ -289,10 +291,15 @@ class DetailContent extends StatelessWidget {
   Widget _showSeasons(List<Season> seasons) {
     return Container(
       child: ListView.builder(
+        shrinkWrap: true,
         itemCount: seasons.length,
-        itemBuilder: (context, index){
-          return ListTile(
-
+        itemBuilder: (context, index) {
+          return Card(
+            child: ListTile(
+              title: Text(seasons[index].name),
+              subtitle:
+                  Text('${seasons[index].episodeCount.toString()} episodes'),
+            ),
           );
         },
       ),

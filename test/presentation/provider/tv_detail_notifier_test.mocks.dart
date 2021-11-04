@@ -8,7 +8,7 @@ import 'package:dartz/dartz.dart' as _i3;
 import 'package:ditonton/common/failure.dart' as _i6;
 import 'package:ditonton/domain/entities/tv.dart' as _i9;
 import 'package:ditonton/domain/entities/tv_detail.dart' as _i7;
-import 'package:ditonton/domain/repositories/movie_repository.dart' as _i2;
+import 'package:ditonton/domain/repositories/tv_repository.dart' as _i2;
 import 'package:ditonton/domain/usecases/get_tv_detail.dart' as _i4;
 import 'package:ditonton/domain/usecases/get_tv_recommendations.dart' as _i8;
 import 'package:ditonton/domain/usecases/get_tv_watchlist_status.dart' as _i10;
@@ -25,7 +25,7 @@ import 'package:mockito/mockito.dart' as _i1;
 // ignore_for_file: unnecessary_parenthesis
 // ignore_for_file: camel_case_types
 
-class _FakeMovieRepository_0 extends _i1.Fake implements _i2.MovieRepository {}
+class _FakeTvRepository_0 extends _i1.Fake implements _i2.TvRepository {}
 
 class _FakeEither_1<L, R> extends _i1.Fake implements _i3.Either<L, R> {}
 
@@ -38,9 +38,9 @@ class MockGetTvDetail extends _i1.Mock implements _i4.GetTvDetail {
   }
 
   @override
-  _i2.MovieRepository get repository =>
+  _i2.TvRepository get repository =>
       (super.noSuchMethod(Invocation.getter(#repository),
-          returnValue: _FakeMovieRepository_0()) as _i2.MovieRepository);
+          returnValue: _FakeTvRepository_0()) as _i2.TvRepository);
   @override
   _i5.Future<_i3.Either<_i6.Failure, _i7.TvDetail>> execute(int? id) =>
       (super.noSuchMethod(Invocation.method(#execute, [id]),
@@ -61,9 +61,9 @@ class MockGetTvRecommendations extends _i1.Mock
   }
 
   @override
-  _i2.MovieRepository get repository =>
+  _i2.TvRepository get repository =>
       (super.noSuchMethod(Invocation.getter(#repository),
-          returnValue: _FakeMovieRepository_0()) as _i2.MovieRepository);
+          returnValue: _FakeTvRepository_0()) as _i2.TvRepository);
   @override
   _i5.Future<_i3.Either<_i6.Failure, List<_i9.Tv>>> execute(int? id) =>
       (super.noSuchMethod(Invocation.method(#execute, [id]),
@@ -84,9 +84,9 @@ class MockGetTvWatchlistStatus extends _i1.Mock
   }
 
   @override
-  _i2.MovieRepository get repository =>
+  _i2.TvRepository get repository =>
       (super.noSuchMethod(Invocation.getter(#repository),
-          returnValue: _FakeMovieRepository_0()) as _i2.MovieRepository);
+          returnValue: _FakeTvRepository_0()) as _i2.TvRepository);
   @override
   _i5.Future<bool> execute(int? id) =>
       (super.noSuchMethod(Invocation.method(#execute, [id]),
@@ -104,9 +104,9 @@ class MockSaveTvWatchlist extends _i1.Mock implements _i11.SaveTvWatchlist {
   }
 
   @override
-  _i2.MovieRepository get repository =>
+  _i2.TvRepository get repository =>
       (super.noSuchMethod(Invocation.getter(#repository),
-          returnValue: _FakeMovieRepository_0()) as _i2.MovieRepository);
+          returnValue: _FakeTvRepository_0()) as _i2.TvRepository);
   @override
   _i5.Future<_i3.Either<_i6.Failure, String>> execute(_i7.TvDetail? tv) =>
       (super.noSuchMethod(Invocation.method(#execute, [tv]),
@@ -126,9 +126,9 @@ class MockRemoveTvWatchlist extends _i1.Mock implements _i12.RemoveTvWatchlist {
   }
 
   @override
-  _i2.MovieRepository get repository =>
+  _i2.TvRepository get repository =>
       (super.noSuchMethod(Invocation.getter(#repository),
-          returnValue: _FakeMovieRepository_0()) as _i2.MovieRepository);
+          returnValue: _FakeTvRepository_0()) as _i2.TvRepository);
   @override
   _i5.Future<_i3.Either<_i6.Failure, String>> execute(_i7.TvDetail? tv) =>
       (super.noSuchMethod(Invocation.method(#execute, [tv]),

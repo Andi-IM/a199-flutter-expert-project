@@ -7,7 +7,7 @@ import 'dart:async' as _i5;
 import 'package:dartz/dartz.dart' as _i3;
 import 'package:ditonton/common/failure.dart' as _i6;
 import 'package:ditonton/domain/entities/tv.dart' as _i7;
-import 'package:ditonton/domain/repositories/movie_repository.dart' as _i2;
+import 'package:ditonton/domain/repositories/tv_repository.dart' as _i2;
 import 'package:ditonton/domain/usecases/get_tv_watchlist.dart' as _i4;
 import 'package:mockito/mockito.dart' as _i1;
 
@@ -20,7 +20,7 @@ import 'package:mockito/mockito.dart' as _i1;
 // ignore_for_file: unnecessary_parenthesis
 // ignore_for_file: camel_case_types
 
-class _FakeMovieRepository_0 extends _i1.Fake implements _i2.MovieRepository {}
+class _FakeTvRepository_0 extends _i1.Fake implements _i2.TvRepository {}
 
 class _FakeEither_1<L, R> extends _i1.Fake implements _i3.Either<L, R> {}
 
@@ -33,9 +33,9 @@ class MockGetTvWatchlist extends _i1.Mock implements _i4.GetTvWatchlist {
   }
 
   @override
-  _i2.MovieRepository get repository =>
+  _i2.TvRepository get repository =>
       (super.noSuchMethod(Invocation.getter(#repository),
-          returnValue: _FakeMovieRepository_0()) as _i2.MovieRepository);
+          returnValue: _FakeTvRepository_0()) as _i2.TvRepository);
   @override
   _i5.Future<_i3.Either<_i6.Failure, List<_i7.Tv>>> execute() =>
       (super.noSuchMethod(Invocation.method(#execute, []),

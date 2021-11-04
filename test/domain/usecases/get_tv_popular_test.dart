@@ -8,11 +8,11 @@ import '../../helpers/test_helper.mocks.dart';
 
 void main() {
   late GetTvPopular usecase;
-  late MockMovieRepository mockMovieRpository;
+  late MockTvRepository mockTvRpository;
 
   setUp(() {
-    mockMovieRpository = MockMovieRepository();
-    usecase = GetTvPopular(mockMovieRpository);
+    mockTvRpository = MockTvRepository();
+    usecase = GetTvPopular(mockTvRpository);
   });
 
   final tTvs = <Tv>[];
@@ -23,7 +23,7 @@ void main() {
           'should get list of tv from the repository when execute function is called',
               () async {
             // arrange
-            when(mockMovieRpository.getPopularTvs())
+            when(mockTvRpository.getPopularTvs())
                 .thenAnswer((_) async => Right(tTvs));
             // act
             final result = await usecase.execute();

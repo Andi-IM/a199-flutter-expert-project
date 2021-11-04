@@ -8,11 +8,11 @@ import '../../helpers/test_helper.mocks.dart';
 
 void main() {
   late GetTvRecommendations usecase;
-  late MockMovieRepository mockMovieRepository;
+  late MockTvRepository mockTvRepository;
 
   setUp(() {
-    mockMovieRepository = MockMovieRepository();
-    usecase = GetTvRecommendations(mockMovieRepository);
+    mockTvRepository = MockTvRepository();
+    usecase = GetTvRecommendations(mockTvRepository);
   });
 
   final tId = 1;
@@ -21,7 +21,7 @@ void main() {
   test('should get list of movie recommendations from the repository',
           () async {
         // arrange
-        when(mockMovieRepository.getTvRecommendations(tId))
+        when(mockTvRepository.getTvRecommendations(tId))
             .thenAnswer((_) async => Right(tTvs));
         // act
         final result = await usecase.execute(tId);

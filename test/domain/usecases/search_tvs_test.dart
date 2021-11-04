@@ -8,11 +8,11 @@ import '../../helpers/test_helper.mocks.dart';
 
 void main() {
   late SearchTvs usecase;
-  late MockMovieRepository mockMovieRepository;
+  late MockTvRepository mockTvRepository;
 
   setUp(() {
-    mockMovieRepository = MockMovieRepository();
-    usecase = SearchTvs(mockMovieRepository);
+    mockTvRepository = MockTvRepository();
+    usecase = SearchTvs(mockTvRepository);
   });
 
   final tTvs = <Tv>[];
@@ -20,7 +20,7 @@ void main() {
 
   test('should get list of movies from the repository', () async {
     // arrange
-    when(mockMovieRepository.searchTvs(tQuery))
+    when(mockTvRepository.searchTvs(tQuery))
         .thenAnswer((_) async => Right(tTvs));
     // act
     final result = await usecase.execute(tQuery);
