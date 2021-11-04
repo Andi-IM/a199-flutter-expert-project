@@ -11,7 +11,6 @@ import '../../../styles/colors.dart';
 import '../../../styles/text_styles.dart';
 import '../../../utils/state_enum.dart';
 import '../../provider/tvshow/tv_detail_notifier.dart';
-import 'watchlist_tv_page.dart';
 
 class TvShowDetailPage extends StatefulWidget {
   static const ROUTE_NAME = '/tv_detail';
@@ -48,7 +47,7 @@ class _TvShowDetailPageState extends State<TvShowDetailPage> {
           } else if (provider.tvState == RequestState.Loaded) {
             final tv = provider.tv;
             return SafeArea(
-              child: DetailContent(
+              child: TvDetailContent(
                 tv,
                 provider.tvRecommendations,
                 provider.isAddedtoWatchlist,
@@ -63,12 +62,12 @@ class _TvShowDetailPageState extends State<TvShowDetailPage> {
   }
 }
 
-class DetailContent extends StatelessWidget {
+class TvDetailContent extends StatelessWidget {
   final TvDetail tv;
   final List<Tv> recommendations;
   final bool isAddedWatchlist;
 
-  DetailContent(this.tv, this.recommendations, this.isAddedWatchlist);
+  TvDetailContent(this.tv, this.recommendations, this.isAddedWatchlist);
 
   @override
   Widget build(BuildContext context) {
@@ -279,10 +278,7 @@ class DetailContent extends StatelessWidget {
             foregroundColor: Colors.white,
             child: IconButton(
               icon: Icon(Icons.arrow_back),
-              onPressed: () {
-                Navigator.popAndPushNamed(
-                    context, WatchlistTvShowsPage.ROUTE_NAME);
-              },
+              onPressed: () => Navigator.pop(context),
             ),
           ),
         )

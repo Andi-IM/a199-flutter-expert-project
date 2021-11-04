@@ -6,7 +6,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:search/domain/usecases/search_movies.dart';
-import 'package:search/presentation/provider/movie_search_notifier.dart';
+import 'package:search/presentation/provider/movie/movie_search_notifier.dart';
 
 import 'movie_search_notifier_test.mocks.dart';
 

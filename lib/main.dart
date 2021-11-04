@@ -1,31 +1,12 @@
 import 'package:about/about_page.dart';
-import 'package:core/presentation/pages/movie/home_movie_page.dart';
-import 'package:core/presentation/pages/movie/movie_detail_page.dart';
-import 'package:core/presentation/pages/movie/popular_movies_page.dart';
-import 'package:core/presentation/pages/movie/top_rated_movies_page.dart';
-import 'package:core/presentation/pages/movie/watchlist_movies_page.dart';
-import 'package:core/presentation/pages/tvshow/home_tvshow_page.dart';
-import 'package:core/presentation/pages/tvshow/popular_tvshow_page.dart';
-import 'package:core/presentation/pages/tvshow/top_rated_tvshow_page.dart';
-import 'package:core/presentation/pages/tvshow/tvshow_detail_page.dart';
-import 'package:core/presentation/pages/tvshow/watchlist_tv_page.dart';
-import 'package:core/presentation/provider/movie/movie_detail_notifier.dart';
-import 'package:core/presentation/provider/movie/movie_list_notifier.dart';
-import 'package:core/presentation/provider/movie/popular_movies_notifier.dart';
-import 'package:core/presentation/provider/movie/top_rated_movies_notifier.dart';
-import 'package:core/presentation/provider/movie/watchlist_movie_notifier.dart';
-import 'package:core/presentation/provider/tvshow/tv_detail_notifier.dart';
-import 'package:core/presentation/provider/tvshow/tv_list_notifier.dart';
-import 'package:core/presentation/provider/tvshow/tv_popular_notifier.dart';
-import 'package:core/presentation/provider/tvshow/tv_top_rated_notifier.dart';
-import 'package:core/presentation/provider/tvshow/tv_watchlist_notifier.dart';
-import 'package:core/presentation/widgets/custom_drawer.dart';
+import 'package:core/core.dart';
 import 'package:core/styles/colors.dart';
 import 'package:core/styles/text_styles.dart';
 import 'package:core/utils/utils.dart';
 import 'package:ditonton/injection.dart' as di;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:search/search.dart';
 
@@ -47,6 +28,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (_) => di.locator<MovieSearchNotifier>(),
+        ),
+        BlocProvider(
+          create: (_) => di.locator<SearchBloc>(),
         ),
         ChangeNotifierProvider(
           create: (_) => di.locator<TopRatedMoviesNotifier>(),

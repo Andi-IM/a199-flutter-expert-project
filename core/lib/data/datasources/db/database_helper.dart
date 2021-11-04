@@ -1,11 +1,14 @@
 import 'dart:async';
-import 'package:sqflite/sqflite.dart';
+
+import 'package:core/utils/encrypt.dart';
+import 'package:sqflite_sqlcipher/sqflite.dart';
 
 import '../../models/movie_table.dart';
 import '../../models/tv_table.dart';
 
 class DatabaseHelper {
   static DatabaseHelper? _databaseHelper;
+
   DatabaseHelper._instance() {
     _databaseHelper = this;
   }
@@ -28,7 +31,12 @@ class DatabaseHelper {
     final path = await getDatabasesPath();
     final databasePath = '$path/core.db';
 
-    var db = await openDatabase(databasePath, version: 1, onCreate: _onCreate);
+    var db = await openDatabase(
+      databasePath,
+      version: 1,
+      onCreate: _onCreate,
+      password: encrypt('Your secure password...'),
+    );
     return db;
   }
 
@@ -42,7 +50,7 @@ class DatabaseHelper {
       );
     ''');
 
-     await db.execute('''
+    await db.execute('''
       CREATE TABLE  $_tblCache (
         id INTEGER PRIMARY KEY,
         title TEXT,
@@ -72,7 +80,7 @@ class DatabaseHelper {
     ''');
   }
 
-   Future<void> insertCacheTransaction(
+  Future<void> insertCacheTransaction(
       List<MovieTable> movies, String category) async {
     final db = await database;
     db!.transaction((txn) async {
@@ -83,7 +91,7 @@ class DatabaseHelper {
       }
     });
   }
- 
+
   Future<List<Map<String, dynamic>>> getCacheMovies(String category) async {
     final db = await database;
     final List<Map<String, dynamic>> results = await db!.query(
@@ -91,10 +99,10 @@ class DatabaseHelper {
       where: 'category = ?',
       whereArgs: [category],
     );
- 
+
     return results;
   }
- 
+
   Future<int> clearCache(String category) async {
     final db = await database;
     return await db!.delete(

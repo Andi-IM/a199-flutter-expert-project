@@ -4,13 +4,12 @@ import 'package:flutter/painting.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:provider/provider.dart';
 
-import '../../../styles/colors.dart';
-import '../../../styles/text_styles.dart';
-import '../../../utils/state_enum.dart';
 import '../../../domain/entities/genre.dart';
 import '../../../domain/entities/movie.dart';
 import '../../../domain/entities/movie_detail.dart';
-import '../../pages/movie/watchlist_movies_page.dart';
+import '../../../styles/colors.dart';
+import '../../../styles/text_styles.dart';
+import '../../../utils/state_enum.dart';
 import '../../provider/movie/movie_detail_notifier.dart';
 
 class MovieDetailPage extends StatefulWidget {
@@ -274,10 +273,7 @@ class DetailContent extends StatelessWidget {
             foregroundColor: Colors.white,
             child: IconButton(
               icon: Icon(Icons.arrow_back),
-              onPressed: () {
-                Navigator.popAndPushNamed(
-                    context, WatchlistMoviesPage.ROUTE_NAME);
-              },
+              onPressed: () => Navigator.pop(context),
             ),
           ),
         )

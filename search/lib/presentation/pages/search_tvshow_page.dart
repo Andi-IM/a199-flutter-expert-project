@@ -4,7 +4,7 @@ import 'package:core/utils/state_enum.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../provider/tv_search_notifier.dart';
+import '../provider/tvshow/tv_search_notifier.dart';
 
 class SearchTvShowsPage extends StatelessWidget {
   static const ROUTE_NAME = '/search_tv';
