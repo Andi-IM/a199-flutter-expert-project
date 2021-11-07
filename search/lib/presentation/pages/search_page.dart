@@ -3,16 +3,20 @@ import 'package:core/styles/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
-import 'package:search/presentation/provider/movie/search_bloc.dart';
+
+import '../provider/movie/search_bloc.dart';
 
 class SearchPage extends StatelessWidget {
+  // ignore: constant_identifier_names
   static const ROUTE_NAME = '/search';
+
+  const SearchPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Search'),
+        title: const Text('Search'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -23,14 +27,14 @@ class SearchPage extends StatelessWidget {
               onChanged: (query) {
                 context.read<SearchBloc>().add(OnQueryChanged(query));
               },
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 hintText: 'Search title',
                 prefixIcon: Icon(Icons.search),
                 border: OutlineInputBorder(),
               ),
               textInputAction: TextInputAction.search,
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Text(
               'Search Result',
               style: kHeading6,
@@ -38,7 +42,7 @@ class SearchPage extends StatelessWidget {
             BlocBuilder<SearchBloc, SearchState>(
               builder: (context, state) {
                 if (state is SearchLoading) {
-                  return Center(
+                  return const Center(
                     child: CircularProgressIndicator(),
                   );
                 } else if (state is SearchHasData) {
@@ -55,11 +59,9 @@ class SearchPage extends StatelessWidget {
                   );
                 } else if (state is SearchError) {
                   return Expanded(
-                    child: Container(
-                      child: Center(
-                        key: Key('error_message'),
-                        child: Text(state.message),
-                      ),
+                    child: Center(
+                      key: const Key('error_message'),
+                      child: Text(state.message),
                     ),
                   );
                 } else {
