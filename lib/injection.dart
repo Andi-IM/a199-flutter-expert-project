@@ -1,8 +1,10 @@
+import 'dart:io';
+
 import 'package:core/core.dart';
 import 'package:core/utils/network_info.dart';
 import 'package:data_connection_checker/data_connection_checker.dart';
 import 'package:get_it/get_it.dart';
-import 'package:http/http.dart' as http;
+import 'package:http_certificate_pinning/http_certificate_pinning.dart';
 import 'package:search/search.dart';
 
 final locator = GetIt.instance;
@@ -131,13 +133,21 @@ void init() {
 
   // data sources
   locator.registerLazySingleton<MovieRemoteDataSource>(
-      () => MovieRemoteDataSourceImpl(client: locator()));
+    () => MovieRemoteDataSourceImpl(client: locator()),
+  );
   locator.registerLazySingleton<MovieLocalDataSource>(
       () => MovieLocalDataSourceImpl(databaseHelper: locator()));
   locator.registerLazySingleton<TvRemoteDataSource>(
       () => TvRemoteDataSourceImpl(client: locator()));
   locator.registerLazySingleton<TvLocalDataSource>(
       () => TvLocalDataSourceImpl(databaseHelper: locator()));
+
+  // HttpClient
+  locator.registerFactory<HttpClient>(
+    () => HttpClient(context: locator())
+      ..badCertificateCallback =
+          (X509Certificate cert, String host, int port) => false,
+  );
 
   // helper
   locator.registerLazySingleton<DatabaseHelper>(() => DatabaseHelper());
@@ -146,6 +156,7 @@ void init() {
   locator.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(locator()));
 
   // external
-  locator.registerLazySingleton(() => http.Client());
+  final certificate = ["54:9E:69:39:A3:01:44:A6:1B:1B:F5:5D:A5:B0:CD:E7:F8:1B:39:4D:8B:7D:B1:97:C0:B7:50:1E:FC:15:A2:85"];
+  locator.registerLazySingleton(() => SecureHttpClient.build(certificate));
   locator.registerLazySingleton(() => DataConnectionChecker());
 }

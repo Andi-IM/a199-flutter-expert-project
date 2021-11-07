@@ -1,5 +1,6 @@
 import 'dart:convert';
-import 'package:http/http.dart' as http;
+
+import 'package:http_certificate_pinning/http_certificate_pinning.dart';
 
 import '../../utils/exception.dart';
 import '../models/movie_detail_model.dart';
@@ -19,7 +20,7 @@ class MovieRemoteDataSourceImpl implements MovieRemoteDataSource {
   static const API_KEY = 'api_key=2174d146bb9c0eab47529b2e77d6b526';
   static const BASE_URL = 'https://api.themoviedb.org/3';
 
-  final http.Client client;
+  final SecureHttpClient client;
 
   MovieRemoteDataSourceImpl({required this.client});
 

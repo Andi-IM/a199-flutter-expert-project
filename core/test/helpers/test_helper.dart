@@ -7,6 +7,7 @@ import 'package:core/domain/repositories/movie_repository.dart';
 import 'package:core/domain/repositories/tv_repository.dart';
 import 'package:core/utils/network_info.dart';
 import 'package:http/http.dart' as http;
+import 'package:http_certificate_pinning/http_certificate_pinning.dart';
 import 'package:mockito/annotations.dart';
 
 @GenerateMocks([
@@ -18,6 +19,7 @@ import 'package:mockito/annotations.dart';
   TvLocalDataSource,
   DatabaseHelper,
   NetworkInfo,
+  SecureHttpClient
 ], customMocks: [
   MockSpec<http.Client>(as: #MockHttpClient)
 ])
