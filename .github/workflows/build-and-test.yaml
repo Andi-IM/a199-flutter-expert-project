@@ -30,5 +30,11 @@ jobs:
           gpg -d --passphrase "${{ secrets.GOOGLE_SERVICES_PASSPHRASE }}" --batch google-services.json.asc > android/app/google-services.json
       - name: Install pub Depedencies
         run: flutter pub get
-      - name: Testing
-        run: flutter test
+      - name: Testing in Core Depedencies
+        run: |
+          cd core
+          flutter test
+      - name: Testing in Search
+        run: |
+          cd search
+          flutter test
