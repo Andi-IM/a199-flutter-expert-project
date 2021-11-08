@@ -13,9 +13,8 @@ part 'tv_search_state.dart';
 class TvSearchBloc extends Bloc<TvSearchEvent, TvSearchState> {
   final SearchTvs _searchTvs;
 
-  TvSearchBloc(this._searchTvs) : super(TvSearchEmpty());
+  TvSearchBloc(this._searchTvs) : super(TvSearchInitial());
 
-  // ignore: deprecation
   @override
   Stream<Transition<TvSearchEvent, TvSearchState>> transformEvents(
     Stream<TvSearchEvent> events,
@@ -40,7 +39,11 @@ class TvSearchBloc extends Bloc<TvSearchEvent, TvSearchState> {
           yield TvSearchError(failure.message);
         },
         (data) async* {
-          yield TvSearchHasData(data);
+          if (data.isEmpty){
+            yield TvSearchEmpty();
+          } else {
+            yield TvSearchHasData(data);
+          }
         },
       );
     }

@@ -13,7 +13,7 @@ part 'search_state.dart';
 class SearchBloc extends Bloc<SearchEvent, SearchState> {
   final SearchMovies _searchMovies;
 
-  SearchBloc(this._searchMovies) : super(SearchEmpty());
+  SearchBloc(this._searchMovies) : super(SearchInitial());
 
   @override
   Stream<Transition<SearchEvent, SearchState>> transformEvents(
@@ -39,7 +39,11 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
           yield SearchError(failure.message);
         },
         (data) async* {
-          yield SearchHasData(data);
+          if (data.isEmpty){
+            yield SearchEmpty();
+          } else {
+            yield SearchHasData(data);
+          }
         },
       );
     }

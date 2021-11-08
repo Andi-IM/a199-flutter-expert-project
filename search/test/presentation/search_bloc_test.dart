@@ -21,7 +21,7 @@ void main(){
   });
 
   test('initialstate should be empty',(){
-    expect(searchBloc.state, SearchEmpty());
+    expect(searchBloc.state, SearchInitial());
   });
 
   final tMovieModel = Movie(
@@ -55,6 +55,24 @@ void main(){
     expect: () => [
       SearchLoading(),
       SearchHasData(tMovieList),
+    ],
+    verify: (bloc) {
+      verify(mockSearchMovies.execute(tQuery));
+    },
+  );
+
+  blocTest<SearchBloc, SearchState>(
+    'Should emit [Loading, Empty] when data is gotten successfully',
+    build: () {
+      when(mockSearchMovies.execute(tQuery))
+          .thenAnswer((_) async => Right([]));
+      return searchBloc;
+    },
+    act: (bloc) => bloc.add(const OnQueryChanged(tQuery)),
+    wait: const Duration(milliseconds: 500),
+    expect: () => [
+      SearchLoading(),
+      SearchEmpty(),
     ],
     verify: (bloc) {
       verify(mockSearchMovies.execute(tQuery));

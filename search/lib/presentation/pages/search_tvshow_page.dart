@@ -63,6 +63,12 @@ class SearchTvShowsPage extends StatelessWidget {
                     child: Text(state.message),
                   ),
                 );
+              } else if (state is TvSearchEmpty){
+                return const Expanded(
+                  child: Center(
+                    child: Text("Yah Judul yang Kamu cari tidak ditemukan."),
+                  ),
+                );
               } else {
                 return Expanded(
                   child: Container(),

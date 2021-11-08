@@ -7,6 +7,8 @@ abstract class TvSearchState extends Equatable {
   List<Object?> get props => [];
 }
 
+class TvSearchInitial extends TvSearchState {}
+
 class TvSearchEmpty extends TvSearchState {}
 
 class TvSearchLoading extends TvSearchState {}
