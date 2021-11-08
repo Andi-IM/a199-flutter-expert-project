@@ -38,6 +38,8 @@ dependencies:
     path: core
   search:
     path: search
+  watchlist:
+    path: watchlist
 
 dev_dependencies:
   flutter_test:

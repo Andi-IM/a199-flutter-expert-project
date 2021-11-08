@@ -1,15 +1,10 @@
-import 'package:about/about_page.dart';
 import 'package:core/utils/routes.dart';
 import 'package:flutter/material.dart';
-
-import '../pages/movie/watchlist_movies_page.dart';
-import '../pages/tvshow/home_tvshow_page.dart';
-import '../pages/tvshow/watchlist_tv_page.dart';
 
 class CustomDrawer extends StatefulWidget {
   final Widget content;
 
-  CustomDrawer({required this.content});
+  const CustomDrawer({Key? key, required this.content}) : super(key: key);
 
   @override
   State<CustomDrawer> createState() => _CustomDrawerState();
@@ -24,15 +19,16 @@ class _CustomDrawerState extends State<CustomDrawer>
     super.initState();
     _animationController = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 250),
+      duration: const Duration(milliseconds: 250),
     );
   }
 
   Widget _buildDrawer() {
+    // ignore: avoid_unnecessary_containers
     return Container(
       child: Column(
         children: [
-          UserAccountsDrawerHeader(
+          const UserAccountsDrawerHeader(
             currentAccountPicture: CircleAvatar(
               backgroundImage: NetworkImage(
                   'https://d17ivq9b7rppb3.cloudfront.net/original/jobs/turut_berkontribusi_memajungan_dunia_it_di_indonesia_270619074639.jpeg'),
@@ -40,44 +36,33 @@ class _CustomDrawerState extends State<CustomDrawer>
             accountName: Text('core'),
             accountEmail: Text('core@dicoding.com'),
           ),
-          ListTile(
-            leading: Icon(Icons.movie),
-            title: Text('Movies'),
-          ),
-          ListTile(
-            leading: Icon(Icons.live_tv),
-            title: Text('Tv Shows'),
-            onTap: () {
-              Navigator.pushNamed(context, TV_SHOW_ROUTE);
-              _animationController.reverse();
-            },
-          ),
-          ListTile(
-            leading: Icon(Icons.save_alt),
-            title: Text('Movie Watchlist'),
-            onTap: () {
-              Navigator.pushNamed(context, WATCHLIST_ROUTE);
-              _animationController.reverse();
-            },
-          ),
-          ListTile(
-            leading: Icon(Icons.save_alt),
-            title: Text('Tv Watchlist'),
-            onTap: () {
-              Navigator.pushNamed(context, WATCHLIST_TV_ROUTE);
-              _animationController.reverse();
-            },
-          ),
-          ListTile(
-            onTap: () {
-              Navigator.pushNamed(context, ABOUT_ROUTE);
-              _animationController.reverse();
-            },
-            leading: Icon(Icons.info_outline),
-            title: Text('About'),
-          ),
+          _buildCard(Icons.movie, 'Movies', () => null),
+          _buildCard(Icons.live_tv, 'Tv Shows', () {
+            Navigator.pushNamed(context, TV_SHOW_ROUTE);
+            _animationController.reverse();
+          }),
+          _buildCard(Icons.save_alt, 'Movie Watchlist', () {
+            Navigator.pushNamed(context, WATCHLIST_ROUTE);
+            _animationController.reverse();
+          }),
+          _buildCard(Icons.save_alt, 'Tv Watchlist', () {
+            Navigator.pushNamed(context, WATCHLIST_TV_ROUTE);
+            _animationController.reverse();
+          }),
+          _buildCard(Icons.info_outline, 'About', () {
+            Navigator.pushNamed(context, ABOUT_ROUTE);
+            _animationController.reverse();
+          }),
         ],
       ),
+    );
+  }
+
+  Widget _buildCard(IconData icon, String title, Function() onTap) {
+    return ListTile(
+      leading: Icon(icon),
+      title: Text(title),
+      onTap: onTap,
     );
   }
 

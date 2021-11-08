@@ -1,10 +1,11 @@
+import 'package:core/domain/entities/tv.dart';
 import 'package:dartz/dartz.dart';
-import 'package:core/domain/usecases/get_tv_watchlist.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
+import 'package:watchlist/domain/usecases/get_tv_watchlist.dart';
 
-import '../../dummy_data/dummy_objects.dart';
 import '../../helpers/test_helper.mocks.dart';
+
 
 void main() {
   late GetTvWatchlist usecase;
@@ -14,6 +15,24 @@ void main() {
     mockTvRepository = MockTvRepository();
     usecase = GetTvWatchlist(mockTvRepository);
   });
+
+  final testTv = Tv(
+    posterPath: "posterPath",
+    popularity: 1,
+    id: 1,
+    backdropPath: "backdropPath",
+    voteAverage: 1,
+    overview: "overview",
+    firstAirDate: "firstAirDate",
+    originCountry: const [],
+    genreIds: const [1, 2, 3],
+    originalLanguage: "originalLanguage",
+    voteCount: 1,
+    name: "name",
+    originalName: "originalName",
+  );
+
+  final testTvList = <Tv>[testTv];
 
   test('should get list of movies from the repository', () async {
     // arrange
