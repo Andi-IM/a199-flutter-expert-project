@@ -23,6 +23,7 @@ dependencies:
   flutter_rating_bar: ^4.0.0
   encrypt: ^5.0.1
   flutter_bloc: ^7.2.0
+  fluttertoast: ^8.0.8
   data_connection_checker:
     git:
       url: https://github.com/chornthorn/data_connection_checker.git

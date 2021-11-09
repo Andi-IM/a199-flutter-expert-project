@@ -20,15 +20,6 @@ void init() {
     ),
   );
   locator.registerFactory(
-    () => MovieDetailNotifier(
-      getMovieDetail: locator(),
-      getMovieRecommendations: locator(),
-      getWatchListStatus: locator(),
-      saveWatchlist: locator(),
-      removeWatchlist: locator(),
-    ),
-  );
-  locator.registerFactory(
     () => PopularMoviesNotifier(
       locator(),
     ),
@@ -43,15 +34,6 @@ void init() {
       getTvOnTheAir: locator(),
       getTvPopular: locator(),
       getTvTopRated: locator(),
-    ),
-  );
-  locator.registerFactory(
-    () => TvDetailNotifier(
-      getTvDetail: locator(),
-      getTvRecommendations: locator(),
-      getTvWatchlistStatus: locator(),
-      saveTvWatchlist: locator(),
-      removeTvWatchlist: locator(),
     ),
   );
   locator.registerFactory(
@@ -77,6 +59,15 @@ void init() {
   );
   locator.registerFactory(
     () => TvWatchlistBloc(locator()),
+  );
+  locator.registerFactory(
+    () => MovieDetailCubit(
+      locator(),
+      locator(),
+      locator(),
+      locator(),
+      locator(),
+    ),
   );
 
   // use case movie

@@ -1,7 +1,9 @@
 name: about
 description: A new Flutter package project.
 version: 0.0.1
-homepage:
+homepage: https://ti.pnp.ac.id
+
+publish_to: none
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
