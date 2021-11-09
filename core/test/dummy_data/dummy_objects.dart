@@ -10,7 +10,7 @@ import 'package:core/domain/entities/tv_detail.dart';
 final testMovie = Movie(
   adult: false,
   backdropPath: '/muth4OYamXf41G2evdrLEg8d3om.jpg',
-  genreIds: [14, 28],
+  genreIds: const [14, 28],
   id: 557,
   originalTitle: 'Spider-Man',
   overview:
@@ -26,7 +26,7 @@ final testMovie = Movie(
 
 final testMovieList = [testMovie];
 
-final testMovieDetail = MovieDetail(
+const testMovieDetail = MovieDetail(
   adult: false,
   backdropPath: 'backdropPath',
   genres: [Genre(id: 1, name: 'Action')],
@@ -41,7 +41,7 @@ final testMovieDetail = MovieDetail(
   voteCount: 1,
 );
 
-final testMovieCache = MovieTable(
+const testMovieCache = MovieTable(
   id: 557,
   overview:
       'After being bitten by a genetically altered spider, nerdy high school student Peter Parker is endowed with amazing powers to become the Amazing superhero known as Spider-Man.',
@@ -72,7 +72,7 @@ final testWatchlistMovie = Movie.watchlist(
   overview: 'overview',
 );
 
-final testMovieTable = MovieTable(
+const testMovieTable = MovieTable(
   id: 1,
   title: 'title',
   posterPath: 'posterPath',
@@ -94,8 +94,8 @@ final testTv = Tv(
   voteAverage: 1,
   overview: "overview",
   firstAirDate: "firstAirDate",
-  originCountry: [],
-  genreIds: [1, 2, 3],
+  originCountry: const [],
+  genreIds: const [1, 2, 3],
   originalLanguage: "originalLanguage",
   voteCount: 1,
   name: "name",
@@ -104,7 +104,7 @@ final testTv = Tv(
 
 final testTvList = [testTv];
 
-final testTvDetail = TvDetail(
+const testTvDetail = TvDetail(
   posterPath: 'posterPath',
   popularity: 100.0,
   id: 1,
@@ -132,7 +132,7 @@ final testTvDetail = TvDetail(
   ],
 );
 
-final testTvCache = TvTable(
+const testTvCache = TvTable(
   id: 31917,
   name: 'Pretty Little Liars',
   overview:
@@ -165,7 +165,7 @@ final testWatchlistTv = Tv.watchlist(
   overview: 'overview',
 );
 
-final testTvTable = TvTable(
+const testTvTable = TvTable(
   id: 1,
   name: 'name',
   posterPath: 'posterPath',

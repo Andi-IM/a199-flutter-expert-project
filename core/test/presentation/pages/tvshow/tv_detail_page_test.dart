@@ -31,12 +31,12 @@ void main() {
       'Watchlist button should display add icon when movie not added to watchlist',
           (WidgetTester tester) async {
         when(bloc.state).thenReturn(
-            TvDetailState(
+            const TvDetailState(
               isDetailLoading: false,
               isRecommendationLoading: false,
               isSaved: false,
               tv: testTvDetail,
-              recommendations: const <Tv>[],
+              recommendations: <Tv>[],
               saveErrorMessage: null,
               saveMessage: null,
               message: null,
@@ -58,12 +58,12 @@ void main() {
       'Watchlist button should display check icon when movie is added to wathclist',
           (WidgetTester tester) async {
         when(bloc.state).thenReturn(
-            TvDetailState(
+            const TvDetailState(
               isDetailLoading: false,
               isRecommendationLoading: false,
               isSaved: true,
               tv: testTvDetail,
-              recommendations: const <Tv>[],
+              recommendations: <Tv>[],
               saveErrorMessage: null,
               saveMessage: null,
               message: null,
@@ -85,12 +85,12 @@ void main() {
   testWidgets(
       'Watchlist button should display Snackbar when added to watchlist',
           (WidgetTester tester) async {
-        TvDetailState(
+        const TvDetailState(
           isDetailLoading: false,
           isRecommendationLoading: false,
           isSaved: false,
           tv: testTvDetail,
-          recommendations: const <Tv>[],
+          recommendations: <Tv>[],
           saveErrorMessage: null,
           saveMessage: 'Added to Watchlist',
           message: null,
@@ -119,12 +119,12 @@ void main() {
       'Watchlist button should display AlertDialog when add to watchlist failed',
           (WidgetTester tester) async {
             when(bloc.state).thenReturn(
-                TvDetailState(
+                const TvDetailState(
                   isDetailLoading: false,
                   isRecommendationLoading: false,
                   isSaved: false,
                   tv: testTvDetail,
-                  recommendations: const <Tv>[],
+                  recommendations: <Tv>[],
                   saveErrorMessage: 'Failed',
                   saveMessage: null,
                   message: null,

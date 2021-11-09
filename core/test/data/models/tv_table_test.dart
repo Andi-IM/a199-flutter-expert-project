@@ -7,7 +7,7 @@ import 'package:core/domain/entities/tv_detail.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  final tTvTable = TvTable(
+  const tTvTable = TvTable(
     id: 1,
     name: 'name',
     overview: 'overview',
@@ -30,7 +30,7 @@ void main() {
     originalName: null,
   );
 
-  final tTvDetail = TvDetail(
+  const tTvDetail = TvDetail(
     posterPath: '/path.jpg',
     popularity: 5.0,
     id: 1,
@@ -58,14 +58,14 @@ void main() {
     ],
   );
 
-  final tTvMap = {
+  const tTvMap = {
     'id': 1,
     'overview': 'overview',
     'posterPath': '/path.jpg',
     'name': 'name',
   };
 
-  final tTvModel = TvModel(
+  const tTvModel = TvModel(
     posterPath: "/path.jpg",
     popularity: 1,
     id: 1,

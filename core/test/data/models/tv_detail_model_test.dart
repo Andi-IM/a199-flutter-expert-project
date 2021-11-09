@@ -6,7 +6,7 @@ import 'package:core/domain/entities/tv_detail.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  final tTvDetailModel = TvDetailResponse(
+  const tTvDetailModel = TvDetailResponse(
     posterPath: '/path.jpg',
     popularity: 5.0,
     id: 1,
@@ -41,7 +41,7 @@ void main() {
     tagline: 'tagline',
     type: 'type',
   );
-  final tTvDetail = TvDetail(
+  const tTvDetail = TvDetail(
     posterPath: '/path.jpg',
     popularity: 5.0,
     id: 1,
@@ -68,7 +68,7 @@ void main() {
       )
     ],
   );
-  final tTvDetailMap = {
+  const tTvDetailMap = {
     'backdrop_path': '/path.jpg',
     'episode_run_time': [10],
     'first_air_date': '2020-02-02',

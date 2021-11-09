@@ -9,13 +9,16 @@ import '../../../utils/constants.dart';
 import '../../../domain/entities/tv.dart';
 import '../../../styles/text_styles.dart';
 import '../../../utils/state_enum.dart';
-import '../../provider/tvshow/tv_list_notifier.dart';
+import '../../provider/tvshow/list/tv_list_notifier.dart';
 import 'popular_tvshow_page.dart';
 import 'top_rated_tvshow_page.dart';
 import 'tvshow_detail_page.dart';
 
 class HomeTvShowPage extends StatefulWidget {
+  // ignore: constant_identifier_names
   static const String ROUTE_NAME = '/tvshow';
+
+  const HomeTvShowPage({Key? key}) : super(key: key);
 
   @override
   _HomeTvShowPageState createState() => _HomeTvShowPageState();
@@ -35,13 +38,13 @@ class _HomeTvShowPageState extends State<HomeTvShowPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('TvShows'),
+        title: const Text('TvShows'),
         actions: [
           IconButton(
             onPressed: () {
               Navigator.pushNamed(context, SEARCH_TV_ROUTE);
             },
-            icon: Icon(Icons.search),
+            icon: const Icon(Icons.search),
           )
         ],
       ),
@@ -58,13 +61,13 @@ class _HomeTvShowPageState extends State<HomeTvShowPage> {
               Consumer<TvListProvider>(builder: (context, data, child) {
                 final state = data.onTheAirState;
                 if (state == RequestState.Loading) {
-                  return Center(
+                  return const Center(
                     child: CircularProgressIndicator(),
                   );
                 } else if (state == RequestState.Loaded) {
                   return TvList(data.onTheAirTvs);
                 } else {
-                  return Text('Failed');
+                  return const Text('Failed');
                 }
               }),
               _buildSubHeading(
@@ -75,13 +78,13 @@ class _HomeTvShowPageState extends State<HomeTvShowPage> {
               Consumer<TvListProvider>(builder: (context, data, child) {
                 final state = data.popularTvsState;
                 if (state == RequestState.Loading) {
-                  return Center(
+                  return const Center(
                     child: CircularProgressIndicator(),
                   );
                 } else if (state == RequestState.Loaded) {
                   return TvList(data.popularTvs);
                 } else {
-                  return Text('Failed');
+                  return const Text('Failed');
                 }
               }),
               _buildSubHeading(
@@ -92,13 +95,13 @@ class _HomeTvShowPageState extends State<HomeTvShowPage> {
               Consumer<TvListProvider>(builder: (context, data, child) {
                 final state = data.topRatedTvsState;
                 if (state == RequestState.Loading) {
-                  return Center(
+                  return const Center(
                     child: CircularProgressIndicator(),
                   );
                 } else if (state == RequestState.Loaded) {
                   return TvList(data.topRatedTvs);
                 } else {
-                  return Text('Failed');
+                  return const Text('Failed');
                 }
               }),
             ],
@@ -121,7 +124,7 @@ class _HomeTvShowPageState extends State<HomeTvShowPage> {
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(
-              children: [Text('See More'), Icon(Icons.arrow_forward_ios)],
+              children: const [Text('See More'), Icon(Icons.arrow_forward_ios)],
             ),
           ),
         ),
@@ -133,11 +136,11 @@ class _HomeTvShowPageState extends State<HomeTvShowPage> {
 class TvList extends StatelessWidget {
   final List<Tv> tvShows;
 
-  TvList(this.tvShows);
+  const TvList(this.tvShows, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 200,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
@@ -154,13 +157,13 @@ class TvList extends StatelessWidget {
                 );
               },
               child: ClipRRect(
-                borderRadius: BorderRadius.all(Radius.circular(16)),
+                borderRadius: const BorderRadius.all(Radius.circular(16)),
                 child: CachedNetworkImage(
                   imageUrl: '$BASE_IMAGE_URL${tvShow.posterPath}',
-                  placeholder: (context, url) => Center(
+                  placeholder: (context, url) => const Center(
                     child: CircularProgressIndicator(),
                   ),
-                  errorWidget: (context, url, error) => Icon(Icons.error),
+                  errorWidget: (context, url, error) => const Icon(Icons.error),
                 ),
               ),
             ),

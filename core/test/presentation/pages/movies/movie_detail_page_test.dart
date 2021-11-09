@@ -31,12 +31,12 @@ void main() {
       'Watchlist button should display add icon when movie not added to watchlist',
       (WidgetTester tester) async {
         when(bloc.state).thenReturn(
-          MovieDetailState(
+          const MovieDetailState(
             isDetailLoading: false,
             isRecommendationLoading: false,
             isSaved: false,
             movie: testMovieDetail,
-            recommendations: const <Movie>[],
+            recommendations: <Movie>[],
             saveErrorMessage: null,
             saveMessage: null,
             message: null,
@@ -58,12 +58,12 @@ void main() {
       'Watchlist button should dispay check icon when movie is added to wathclist',
       (WidgetTester tester) async {
         when(bloc.state).thenReturn(
-            MovieDetailState(
+            const MovieDetailState(
               isDetailLoading: false,
               isRecommendationLoading: false,
               isSaved: true,
               movie: testMovieDetail,
-              recommendations: const <Movie>[],
+              recommendations: <Movie>[],
               saveErrorMessage: null,
               saveMessage: null,
               message: null,
@@ -85,12 +85,12 @@ void main() {
       'Watchlist button should display Snackbar when added to watchlist',
       (WidgetTester tester) async {
         when(bloc.state).thenReturn(
-            MovieDetailState(
+            const MovieDetailState(
               isDetailLoading: false,
               isRecommendationLoading: false,
               isSaved: false,
               movie: testMovieDetail,
-              recommendations: const <Movie>[],
+              recommendations: <Movie>[],
               saveErrorMessage: null,
               saveMessage: 'Added to Watchlist',
               message: null,
@@ -119,12 +119,12 @@ void main() {
       'Watchlist button should display AlertDialog when add to watchlist failed',
       (WidgetTester tester) async {
         when(bloc.state).thenReturn(
-            MovieDetailState(
+            const MovieDetailState(
               isDetailLoading: false,
               isRecommendationLoading: false,
               isSaved: false,
               movie: testMovieDetail,
-              recommendations: const <Movie>[],
+              recommendations: <Movie>[],
               saveErrorMessage: 'Failed',
               saveMessage: null,
               message: null,

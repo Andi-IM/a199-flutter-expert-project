@@ -16,7 +16,7 @@ void main() {
   });
 
   final tTvs = <Tv>[];
-  final tQuery = 'Game of Thrones';
+  const tQuery = 'Game of Thrones';
 
   test('should get list of movies from the repository', () async {
     // arrange

@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:watchlist/presentation/provider/movie/movie_watchlist_bloc.dart';
 
 class WatchlistMoviesPage extends StatefulWidget {
+  // ignore: constant_identifier_names
   static const ROUTE_NAME = '/watchlist-movie';
 
   const WatchlistMoviesPage({Key? key}) : super(key: key);

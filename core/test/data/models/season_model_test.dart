@@ -3,7 +3,7 @@ import 'package:core/domain/entities/season.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  final tSeasonModel = SeasonModel(
+  const tSeasonModel = SeasonModel(
     airDate: '2020-02-02',
     episodeCount: 12,
     id: 1,
@@ -12,7 +12,7 @@ void main() {
     posterPath: 'posterPath',
     seasonNumber: 1,
   );
-  final tSeason = Season(
+  const tSeason = Season(
     airDate: '2020-02-02',
     episodeCount: 12,
     id: 1,

@@ -5,7 +5,7 @@ import 'package:core/domain/entities/movie_detail.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  final tMovieTable = MovieTable(
+  const tMovieTable = MovieTable(
     id: 1,
     title: 'title',
     posterPath: '/path.jpg',
@@ -28,7 +28,7 @@ void main() {
     voteCount: null,
   );
 
-  final tMovieDetail = MovieDetail(
+  const tMovieDetail = MovieDetail(
     adult: false,
     backdropPath: null,
     id: 1,
@@ -50,7 +50,7 @@ void main() {
     'title': 'title',
   };
 
-  final tMovieModel = MovieModel(
+  const tMovieModel = MovieModel(
     adult: false,
     backdropPath: null,
     genreIds: [1, 2, 3, 4],

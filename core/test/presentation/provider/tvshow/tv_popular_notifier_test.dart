@@ -3,7 +3,7 @@ import 'package:core/utils/failure.dart';
 import 'package:core/utils/state_enum.dart';
 import 'package:core/domain/entities/tv.dart';
 import 'package:core/domain/usecases/get_tv_popular.dart';
-import 'package:core/presentation/provider/tvshow/tv_popular_notifier.dart';
+import 'package:core/presentation/provider/tvshow/popular/tv_popular_notifier.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
@@ -36,8 +36,8 @@ void main() {
     voteAverage: 1,
     overview: "overview",
     firstAirDate: "firstAirDate",
-    originCountry: [],
-    genreIds: [1, 2, 3],
+    originCountry: const [],
+    genreIds: const [1, 2, 3],
     originalLanguage: "originalLanguage",
     voteCount: 1,
     name: "name",
@@ -60,7 +60,7 @@ void main() {
   test('should return error when data is unsuccessful', () async {
     // arrange
     when(mockGetTvPopular.execute())
-        .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
+        .thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
     // act
     await notifier.fetchPopularTvs();
     // assert

@@ -3,9 +3,9 @@ import 'package:core/domain/entities/genre.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  final tGenreModel = GenreModel(id: 1, name: 'name');
-  final tGenre = Genre(id: 1, name: 'name');
-  final tGenreMap = {
+  const tGenreModel = GenreModel(id: 1, name: 'name');
+  const tGenre = Genre(id: 1, name: 'name');
+  const tGenreMap = {
     'id' : 1,
     'name' : 'name',
   };

@@ -72,7 +72,7 @@ void main() {
       'should get data from the usecases',
       build: () {
         when(detail.execute(tId))
-            .thenAnswer((_) async => Right(testTvDetail));
+            .thenAnswer((_) async => const Right(testTvDetail));
         when(recommendations.execute(tId))
             .thenAnswer((_) async => Right(tTvs));
         return bloc;
@@ -89,7 +89,7 @@ void main() {
           saveMessage: null,
           saveErrorMessage: null,
         ),
-        TvDetailState(
+        const TvDetailState(
           isDetailLoading: false,
           isRecommendationLoading: true,
           isSaved: false,
@@ -116,9 +116,9 @@ void main() {
       'should return error when data is unsuccessful',
       build: () {
         when(detail.execute(tId))
-            .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
+            .thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
         when(recommendations.execute(tId))
-            .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
+            .thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
         return bloc;
       },
       act: (cubit) => cubit.getDetail(tId),
@@ -209,7 +209,7 @@ void main() {
       'should show error when add watchlist failed',
       build: () {
         when(save.execute(testTvDetail))
-            .thenAnswer((_) async => Left(DatabaseFailure('Failed')));
+            .thenAnswer((_) async => const Left(DatabaseFailure('Failed')));
         when(status.execute(testTvDetail.id))
             .thenAnswer((_) async => false);
         return bloc;
@@ -279,7 +279,7 @@ void main() {
       'should show error when remove watchlist failed',
       build: () {
         when(remove.execute(testTvDetail))
-            .thenAnswer((_) async => Left(DatabaseFailure('Failed')));
+            .thenAnswer((_) async => const Left(DatabaseFailure('Failed')));
         when(status.execute(testTvDetail.id))
             .thenAnswer((_) async => true);
         return bloc;

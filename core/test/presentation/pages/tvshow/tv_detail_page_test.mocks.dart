@@ -5,9 +5,8 @@
 import 'dart:async' as _i3;
 
 import 'package:bloc/bloc.dart' as _i5;
+import 'package:core/core.dart' as _i2;
 import 'package:core/domain/entities/tv_detail.dart' as _i4;
-import 'package:core/presentation/provider/tvshow/detail/tv_detail_cubit.dart'
-    as _i2;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: avoid_redundant_argument_values

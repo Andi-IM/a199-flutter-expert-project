@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../../domain/entities/tv.dart';
-import '../../../domain/usecases/get_tv_popular.dart';
-import '../../../utils/state_enum.dart';
+import '../../../../domain/entities/tv.dart';
+import '../../../../domain/usecases/get_tv_popular.dart';
+import '../../../../utils/state_enum.dart';
 
 class TvPopularNotifier extends ChangeNotifier {
   final GetTvPopular getTvPopular;

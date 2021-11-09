@@ -65,7 +65,7 @@ void main(){
     'Should emit [Loading, Empty] when data is gotten successfully',
     build: () {
       when(mockSearchMovies.execute(tQuery))
-          .thenAnswer((_) async => Right([]));
+          .thenAnswer((_) async => const Right([]));
       return searchBloc;
     },
     act: (bloc) => bloc.add(const OnQueryChanged(tQuery)),
@@ -83,7 +83,7 @@ void main(){
     'Should emit [Loading, Error] when get search is unsuccessful',
     build: () {
       when(mockSearchMovies.execute(tQuery))
-          .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
+          .thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
       return searchBloc;
     },
     act: (bloc) => bloc.add(const OnQueryChanged(tQuery)),

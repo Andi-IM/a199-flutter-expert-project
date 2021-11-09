@@ -5,7 +5,7 @@ import 'package:core/domain/entities/movie_detail.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  final tMovieDetailModel = MovieDetailResponse(
+  const tMovieDetailModel = MovieDetailResponse(
     adult: false,
     backdropPath: 'backdropPath',
     genres: [GenreModel(id: 1, name: 'Action')],
@@ -28,7 +28,7 @@ void main() {
     homepage: 'homepage',
     budget: 10,
   );
-  final tMovieDetail = MovieDetail(
+  const tMovieDetail = MovieDetail(
     adult: false,
     backdropPath: 'backdropPath',
     genres: [Genre(id: 1, name: 'Action')],

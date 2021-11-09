@@ -5,7 +5,7 @@ class TvResponse extends Equatable {
   final List<TvModel> tvList;
 
 
-  TvResponse({required this.tvList});
+  const TvResponse({required this.tvList});
 
   factory TvResponse.fromJson(Map<String, dynamic> json) => TvResponse(
     tvList: List<TvModel>.from((json["results"] as List)

@@ -1,7 +1,7 @@
 import 'package:core/utils/state_enum.dart';
 import 'package:core/domain/entities/tv.dart';
 import 'package:core/presentation/pages/tvshow/top_rated_tvshow_page.dart';
-import 'package:core/presentation/provider/tvshow/tv_top_rated_notifier.dart';
+import 'package:core/presentation/provider/tvshow/top_rated/tv_top_rated_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
@@ -34,7 +34,7 @@ void main() {
     final progressFinder = find.byType(CircularProgressIndicator);
     final centerFinder = find.byType(Center);
 
-    await tester.pumpWidget(_makeTestableWidget(TopRatedTvShowsPage()));
+    await tester.pumpWidget(_makeTestableWidget(const TopRatedTvShowsPage()));
 
     expect(centerFinder, findsOneWidget);
     expect(progressFinder, findsOneWidget);
@@ -47,7 +47,7 @@ void main() {
 
     final listViewFinder = find.byType(ListView);
 
-    await tester.pumpWidget(_makeTestableWidget(TopRatedTvShowsPage()));
+    await tester.pumpWidget(_makeTestableWidget(const TopRatedTvShowsPage()));
 
     expect(listViewFinder, findsOneWidget);
   });
@@ -57,9 +57,9 @@ void main() {
     when(mockNotifier.state).thenReturn(RequestState.Error);
     when(mockNotifier.message).thenReturn('Error message');
 
-    final textFinder = find.byKey(Key('error_message'));
+    final textFinder = find.byKey(const Key('error_message'));
 
-    await tester.pumpWidget(_makeTestableWidget(TopRatedTvShowsPage()));
+    await tester.pumpWidget(_makeTestableWidget(const TopRatedTvShowsPage()));
 
     expect(textFinder, findsOneWidget);
   });

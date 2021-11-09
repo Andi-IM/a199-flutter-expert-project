@@ -4,7 +4,7 @@ import 'package:core/domain/usecases/get_now_playing_movies.dart';
 import 'package:core/utils/failure.dart';
 import 'package:core/domain/usecases/get_popular_movies.dart';
 import 'package:core/domain/usecases/get_top_rated_movies.dart';
-import 'package:core/presentation/provider/movie/movie_list_notifier.dart';
+import 'package:core/presentation/provider/movie/list/movie_list_notifier.dart';
 import 'package:core/utils/state_enum.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
@@ -37,7 +37,7 @@ void main() {
   final tMovie = Movie(
     adult: false,
     backdropPath: 'backdropPath',
-    genreIds: [1, 2, 3],
+    genreIds: const [1, 2, 3],
     id: 1,
     originalTitle: 'originalTitle',
     overview: 'overview',
@@ -91,7 +91,7 @@ void main() {
     test('should return error when data is unsuccessful', () async {
       // arrange
       when(mockGetNowPlayingMovies.execute())
-          .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
+          .thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
       // act
       await provider.fetchNowPlayingMovies();
       // assert
@@ -129,7 +129,7 @@ void main() {
     test('should return error when data is unsuccessful', () async {
       // arrange
       when(mockGetPopularMovies.execute())
-          .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
+          .thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
       // act
       await provider.fetchPopularMovies();
       // assert
@@ -166,7 +166,7 @@ void main() {
     test('should return error when data is unsuccessful', () async {
       // arrange
       when(mockGetTopRatedMovies.execute())
-          .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
+          .thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
       // act
       await provider.fetchTopRatedMovies();
       // assert
