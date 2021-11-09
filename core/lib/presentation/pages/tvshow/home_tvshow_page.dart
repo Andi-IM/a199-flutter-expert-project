@@ -1,15 +1,17 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:core/presentation/provider/tvshow/list/tv_list_cubit.dart';
+import 'package:core/presentation/provider/tvshow/popular/tv_popular_cubit.dart';
+import 'package:core/presentation/provider/tvshow/top_rated/tv_top_rated_cubit.dart';
 import 'package:core/utils/routes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 
-import '../../../utils/constants.dart';
 import '../../../domain/entities/tv.dart';
 import '../../../styles/text_styles.dart';
-import '../../../utils/state_enum.dart';
-import '../../provider/tvshow/list/tv_list_notifier.dart';
+import '../../../utils/constants.dart';
 import 'popular_tvshow_page.dart';
 import 'top_rated_tvshow_page.dart';
 import 'tvshow_detail_page.dart';
@@ -28,10 +30,9 @@ class _HomeTvShowPageState extends State<HomeTvShowPage> {
   @override
   void initState() {
     super.initState();
-    Future.microtask(() => Provider.of<TvListProvider>(context, listen: false)
-      ..fetchOnTheAirTvs()
-      ..fetchPopularTvs()
-      ..fetchTopRatedTvs());
+    context.read<TvNowAiringCubit>().fetchNowAiring();
+    context.read<TvPopularCubit>().fetchPopular();
+    context.read<TvTopRatedCubit>().fetchTopRated();
   }
 
   @override
@@ -58,14 +59,14 @@ class _HomeTvShowPageState extends State<HomeTvShowPage> {
                 'On The Air',
                 style: kHeading6,
               ),
-              Consumer<TvListProvider>(builder: (context, data, child) {
-                final state = data.onTheAirState;
-                if (state == RequestState.Loading) {
+              BlocBuilder<TvNowAiringCubit, TvNowAiringState>(
+                  builder: (context, state) {
+                if (state is TvNowAiringLoading) {
                   return const Center(
                     child: CircularProgressIndicator(),
                   );
-                } else if (state == RequestState.Loaded) {
-                  return TvList(data.onTheAirTvs);
+                } else if (state is TvNowAiringHasData) {
+                  return TvList(state.tvs);
                 } else {
                   return const Text('Failed');
                 }
@@ -75,14 +76,14 @@ class _HomeTvShowPageState extends State<HomeTvShowPage> {
                 onTap: () =>
                     Navigator.pushNamed(context, PopularTvShowsPage.ROUTE_NAME),
               ),
-              Consumer<TvListProvider>(builder: (context, data, child) {
-                final state = data.popularTvsState;
-                if (state == RequestState.Loading) {
+              BlocBuilder<TvPopularCubit, TvPopularState>(
+                  builder: (context, state) {
+                if (state is TvPopularLoading) {
                   return const Center(
                     child: CircularProgressIndicator(),
                   );
-                } else if (state == RequestState.Loaded) {
-                  return TvList(data.popularTvs);
+                } else if (state is TvPopularHasData) {
+                  return TvList(state.tvs);
                 } else {
                   return const Text('Failed');
                 }
@@ -92,14 +93,14 @@ class _HomeTvShowPageState extends State<HomeTvShowPage> {
                 onTap: () => Navigator.pushNamed(
                     context, TopRatedTvShowsPage.ROUTE_NAME),
               ),
-              Consumer<TvListProvider>(builder: (context, data, child) {
-                final state = data.topRatedTvsState;
-                if (state == RequestState.Loading) {
+              BlocBuilder<TvTopRatedCubit, TvTopRatedState>(
+                  builder: (context, state) {
+                if (state is TvTopRatedLoading) {
                   return const Center(
                     child: CircularProgressIndicator(),
                   );
-                } else if (state == RequestState.Loaded) {
-                  return TvList(data.topRatedTvs);
+                } else if (state is TvTopRatedHasData) {
+                  return TvList(state.tvs);
                 } else {
                   return const Text('Failed');
                 }

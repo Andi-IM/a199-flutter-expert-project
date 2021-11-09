@@ -24,8 +24,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(
-          create: (_) => di.locator<MovieListNotifier>(),
+        BlocProvider(
+          create: (_) => di.locator<MovieNowPlayingCubit>(),
         ),
         BlocProvider(
           create: (_) => di.locator<MovieDetailCubit>(),
@@ -42,8 +42,8 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (_) => di.locator<MovieWatchlistBloc>(),
         ),
-        ChangeNotifierProvider(
-          create: (_) => di.locator<TvListProvider>(),
+        BlocProvider(
+          create: (_) => di.locator<TvNowAiringCubit>(),
         ),
         BlocProvider(
           create: (_) => di.locator<TvDetailCubit>(),

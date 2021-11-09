@@ -19,7 +19,7 @@ class _PopularTvShowsPageState extends State<PopularTvShowsPage> {
   @override
   void initState() {
     super.initState();
-    context.read<TvPopularCubit>().getPopular();
+    context.read<TvPopularCubit>().fetchPopular();
   }
 
   @override

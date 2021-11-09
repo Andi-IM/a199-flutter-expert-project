@@ -1,8 +1,22 @@
 import 'package:bloc/bloc.dart';
+import 'package:core/core.dart';
+import 'package:core/domain/entities/movie.dart';
 import 'package:equatable/equatable.dart';
 
 part 'movie_list_state.dart';
 
-class MovieListCubit extends Cubit<MovieListState> {
-  MovieListCubit() : super(MovieListInitial());
+class MovieNowPlayingCubit extends Cubit<MovieNowPlayingState> {
+  final GetNowPlayingMovies _nowPlaying;
+
+  MovieNowPlayingCubit(this._nowPlaying) : super(MovieNowPlayingInitial());
+
+  Future<void> fetchNowPlayingMovies() async {
+    emit(MovieNowPlayingLoading());
+    final result = await _nowPlaying.execute();
+
+    result.fold(
+          (failure) => MovieNowPlayingError(failure.message),
+          (data) => MovieNowPlayingHasData(data),
+    );
+  }
 }

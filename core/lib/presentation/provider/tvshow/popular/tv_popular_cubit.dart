@@ -10,7 +10,7 @@ class TvPopularCubit extends Cubit<TvPopularState> {
 
   TvPopularCubit(this._popular) : super(TvPopularEmpty());
 
-  Future<void> getPopular() async {
+  Future<void> fetchPopular() async {
     emit(TvPopularLoading());
     final result = await _popular.execute();
 

@@ -19,7 +19,7 @@ class _PopularMoviesPageState extends State<PopularMoviesPage> {
   @override
   void initState() {
     super.initState();
-    context.read<MoviePopularCubit>().getPopular();
+    context.read<MoviePopularCubit>().fetchPopular();
   }
 
   @override
