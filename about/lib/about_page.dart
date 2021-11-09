@@ -2,7 +2,10 @@ import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
 class AboutPage extends StatelessWidget {
+  // ignore: constant_identifier_names
   static const String ROUTE_NAME = '/about';
+
+  const AboutPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +41,7 @@ class AboutPage extends StatelessWidget {
           SafeArea(
             child: IconButton(
               onPressed: () => Navigator.pop(context),
-              icon: Icon(Icons.arrow_back),
+              icon: const Icon(Icons.arrow_back),
             ),
           )
         ],

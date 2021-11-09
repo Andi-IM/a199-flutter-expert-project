@@ -25,7 +25,7 @@ class TvLocalDataSourceImpl implements TvLocalDataSource {
   @override
   Future<List<TvTable>> getCachedNowAiringTvs() async {
     final result = await databaseHelper.getCacheTvs('on the air');
-    if (result.length > 0) {
+    if (result.isNotEmpty) {
       return result.map((data) => TvTable.fromMap(data)).toList();
     } else {
       throw CacheException("Can't get the data :(");

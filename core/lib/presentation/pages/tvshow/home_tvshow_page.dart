@@ -9,13 +9,16 @@ import '../../../utils/constants.dart';
 import '../../../domain/entities/tv.dart';
 import '../../../styles/text_styles.dart';
 import '../../../utils/state_enum.dart';
-import '../../provider/tvshow/tv_list_notifier.dart';
+import '../../provider/tvshow/list/tv_list_notifier.dart';
 import 'popular_tvshow_page.dart';
 import 'top_rated_tvshow_page.dart';
 import 'tvshow_detail_page.dart';
 
 class HomeTvShowPage extends StatefulWidget {
+  // ignore: constant_identifier_names
   static const String ROUTE_NAME = '/tvshow';
+
+  const HomeTvShowPage({Key? key}) : super(key: key);
 
   @override
   _HomeTvShowPageState createState() => _HomeTvShowPageState();
@@ -35,13 +38,13 @@ class _HomeTvShowPageState extends State<HomeTvShowPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('TvShows'),
+        title: const Text('TvShows'),
         actions: [
           IconButton(
             onPressed: () {
               Navigator.pushNamed(context, SEARCH_TV_ROUTE);
             },
-            icon: Icon(Icons.search),
+            icon: const Icon(Icons.search),
           )
         ],
       ),
@@ -133,7 +136,7 @@ class _HomeTvShowPageState extends State<HomeTvShowPage> {
 class TvList extends StatelessWidget {
   final List<Tv> tvShows;
 
-  TvList(this.tvShows);
+  const TvList(this.tvShows);
 
   @override
   Widget build(BuildContext context) {

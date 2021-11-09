@@ -4,7 +4,7 @@ import '../../domain/entities/tv.dart';
 import '../../domain/entities/tv_detail.dart';
 
 class TvTable extends Equatable {
-  TvTable({
+  const TvTable({
     required this.id,
     required this.name,
     required this.overview,

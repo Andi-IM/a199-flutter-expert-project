@@ -5,7 +5,7 @@ import 'package:core/domain/entities/tv.dart';
 import 'package:core/domain/usecases/get_tv_on_the_air.dart';
 import 'package:core/domain/usecases/get_tv_popular.dart';
 import 'package:core/domain/usecases/get_tv_top_rated.dart';
-import 'package:core/presentation/provider/tvshow/tv_list_notifier.dart';
+import 'package:core/presentation/provider/tvshow/list/tv_list_notifier.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';

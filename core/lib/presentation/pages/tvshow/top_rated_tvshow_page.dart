@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../utils/state_enum.dart';
-import '../../provider/tvshow/tv_top_rated_notifier.dart';
+import '../../provider/tvshow/top_rated/tv_top_rated_notifier.dart';
 import '../../widgets/tv_card_list.dart';
 
 class TopRatedTvShowsPage extends StatefulWidget {

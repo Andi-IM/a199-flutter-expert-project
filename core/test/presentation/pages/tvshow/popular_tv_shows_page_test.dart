@@ -1,7 +1,7 @@
 import 'package:core/utils/state_enum.dart';
 import 'package:core/domain/entities/tv.dart';
 import 'package:core/presentation/pages/tvshow/popular_tvshow_page.dart';
-import 'package:core/presentation/provider/tvshow/tv_popular_notifier.dart';
+import 'package:core/presentation/provider/tvshow/popular/tv_popular_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
