@@ -15,8 +15,8 @@ class TvNowAiringCubit extends Cubit<TvNowAiringState> {
     final result = await _onAir.execute();
 
     result.fold(
-      (failure) => TvNowAiringError(failure.message),
-      (data) => TvNowAiringHasData(data),
+      (failure) => emit(TvNowAiringError(failure.message)),
+      (data) => emit(TvNowAiringHasData(data)),
     );
   }
 }

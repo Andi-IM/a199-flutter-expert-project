@@ -15,8 +15,8 @@ class TvPopularCubit extends Cubit<TvPopularState> {
     final result = await _popular.execute();
 
     result.fold(
-      (failure) => TvPopularError(failure.message),
-      (data) => TvPopularHasData(data),
+      (failure) => emit(TvPopularError(failure.message)),
+      (data) => emit(TvPopularHasData(data)),
     );
   }
 }

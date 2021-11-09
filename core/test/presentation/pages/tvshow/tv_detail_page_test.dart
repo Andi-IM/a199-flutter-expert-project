@@ -27,10 +27,120 @@ void main() {
     );
   }
 
-  testWidgets(
-      'Watchlist button should display add icon when movie not added to watchlist',
+  testWidgets('Should show loading widget when fetching data',
           (WidgetTester tester) async {
         when(bloc.state).thenReturn(
+          const TvDetailState(
+            isDetailLoading: true,
+            isRecommendationLoading: true,
+            isSaved: false,
+            tv: null,
+            recommendations: null,
+            saveErrorMessage: null,
+            saveMessage: null,
+            message: null,
+          ),
+        );
+        when(bloc.stream).thenAnswer((_) => Stream.value(
+          const TvDetailState(
+            isDetailLoading: true,
+            isRecommendationLoading: true,
+            isSaved: false,
+            tv: null,
+            recommendations: null,
+            saveErrorMessage: null,
+            saveMessage: null,
+            message: null,
+          ),
+        ));
+
+        await tester.pumpWidget(_makeTestableWidget(const TvShowDetailPage(id: 1)));
+
+        expect(find.byKey(const Key('detail_loading')), findsOneWidget);
+      });
+
+
+  testWidgets(
+      'Watchlist button should display add icon when tv not added to watchlist',
+      (WidgetTester tester) async {
+    when(bloc.state).thenReturn(const TvDetailState(
+      isDetailLoading: false,
+      isRecommendationLoading: false,
+      isSaved: false,
+      tv: testTvDetail,
+      recommendations: <Tv>[],
+      saveErrorMessage: null,
+      saveMessage: null,
+      message: null,
+    ));
+    when(bloc.stream).thenAnswer(
+      (_) => Stream.value(const TvDetailState(
+        isDetailLoading: false,
+        isRecommendationLoading: false,
+        isSaved: false,
+        tv: testTvDetail,
+        recommendations: <Tv>[],
+        saveErrorMessage: null,
+        saveMessage: null,
+        message: null,
+      )),
+    );
+
+    final watchlistButtonIcon = find.byIcon(Icons.add);
+
+    await tester.pumpWidget(_makeTestableWidget(const TvShowDetailPage(id: 1)));
+
+    expect(watchlistButtonIcon, findsOneWidget);
+  });
+
+  testWidgets(
+      'Watchlist button should display check icon when tv is added to wathclist',
+      (WidgetTester tester) async {
+    when(bloc.state).thenReturn(const TvDetailState(
+      isDetailLoading: false,
+      isRecommendationLoading: false,
+      isSaved: false,
+      tv: testTvDetail,
+      recommendations: <Tv>[],
+      saveErrorMessage: null,
+      saveMessage: null,
+      message: null,
+    ));
+    when(bloc.stream).thenAnswer(
+      (_) => Stream.value(const TvDetailState(
+        isDetailLoading: false,
+        isRecommendationLoading: false,
+        isSaved: true,
+        tv: testTvDetail,
+        recommendations: <Tv>[],
+        saveErrorMessage: null,
+        saveMessage: null,
+        message: null,
+      )),
+    );
+
+    final watchlistButtonIcon = find.byIcon(Icons.add);
+
+    await tester.pumpWidget(_makeTestableWidget(const TvShowDetailPage(id: 1)));
+
+    expect(watchlistButtonIcon, findsOneWidget);
+  });
+
+  testWidgets(
+      'Watchlist button should display Snackbar when added to watchlist',
+      (WidgetTester tester) async {
+    when(bloc.state).thenReturn(const TvDetailState(
+      isDetailLoading: false,
+      isRecommendationLoading: false,
+      isSaved: false,
+      tv: testTvDetail,
+      recommendations: <Tv>[],
+      saveErrorMessage: null,
+      saveMessage: null,
+      message: null,
+    ));
+    when(bloc.stream).thenAnswer((_) => Stream.fromIterable(
+          [
             const TvDetailState(
               isDetailLoading: false,
               isRecommendationLoading: false,
@@ -38,26 +148,9 @@ void main() {
               tv: testTvDetail,
               recommendations: <Tv>[],
               saveErrorMessage: null,
-              saveMessage: null,
+              saveMessage: 'Added to Watchlist',
               message: null,
-            ));
-        // when(bloc.tvState).thenReturn(RequestState.Loaded);
-        // when(bloc.tv).thenReturn(testTvDetail);
-        // when(bloc.recommendationState).thenReturn(RequestState.Loaded);
-        // when(bloc.tvRecommendations).thenReturn(<Tv>[]);
-        // when(bloc.isAddedtoWatchlist).thenReturn(false);
-
-        final watchlistButtonIcon = find.byIcon(Icons.add);
-
-        await tester.pumpWidget(_makeTestableWidget(const TvShowDetailPage(id: 1)));
-
-        expect(watchlistButtonIcon, findsOneWidget);
-      });
-
-  testWidgets(
-      'Watchlist button should display check icon when movie is added to wathclist',
-          (WidgetTester tester) async {
-        when(bloc.state).thenReturn(
+            ),
             const TvDetailState(
               isDetailLoading: false,
               isRecommendationLoading: false,
@@ -67,85 +160,69 @@ void main() {
               saveErrorMessage: null,
               saveMessage: null,
               message: null,
-            ));
-        // when(bloc.tvState).thenReturn(RequestState.Loaded);
-        // when(bloc.tv).thenReturn(testTvDetail);
-        // when(bloc.recommendationState).thenReturn(RequestState.Loaded);
-        // when(bloc.tvRecommendations).thenReturn(<Tv>[]);
-        // when(bloc.isAddedtoWatchlist).thenReturn(true);
+            ),
+          ],
+        ));
 
-        final watchlistButtonIcon = find.byIcon(Icons.check);
+    final watchlistButton = find.byType(ElevatedButton);
 
-        await tester.pumpWidget(
-            _makeTestableWidget(const TvShowDetailPage(id: 1)));
+    await tester.pumpWidget(_makeTestableWidget(const TvShowDetailPage(id: 1)));
 
-        expect(watchlistButtonIcon, findsOneWidget);
-      });
+    expect(find.byIcon(Icons.add), findsOneWidget);
 
-  testWidgets(
-      'Watchlist button should display Snackbar when added to watchlist',
-          (WidgetTester tester) async {
-        const TvDetailState(
-          isDetailLoading: false,
-          isRecommendationLoading: false,
-          isSaved: false,
-          tv: testTvDetail,
-          recommendations: <Tv>[],
-          saveErrorMessage: null,
-          saveMessage: 'Added to Watchlist',
-          message: null,
-        );
-        // when(bloc.tvState).thenReturn(RequestState.Loaded);
-        // when(bloc.tv).thenReturn(testTvDetail);
-        // when(bloc.recommendationState).thenReturn(RequestState.Loaded);
-        // when(bloc.tvRecommendations).thenReturn(<Tv>[]);
-        // when(bloc.isAddedtoWatchlist).thenReturn(false);
-        // when(bloc.watchlistMessage).thenReturn('Added to Watchlist');
+    await tester.tap(watchlistButton);
+    await tester.pump();
 
-        final watchlistButton = find.byType(ElevatedButton);
-
-        await tester.pumpWidget(_makeTestableWidget(const TvShowDetailPage(id: 1)));
-
-        expect(find.byIcon(Icons.add), findsOneWidget);
-
-        await tester.tap(watchlistButton);
-        await tester.pump();
-
-        expect(find.byType(SnackBar), findsOneWidget);
-        expect(find.text('Added to Watchlist'), findsOneWidget);
-      });
+    expect(find.byType(SnackBar), findsOneWidget);
+    expect(find.text('Added to Watchlist'), findsOneWidget);
+  });
 
   testWidgets(
-      'Watchlist button should display AlertDialog when add to watchlist failed',
-          (WidgetTester tester) async {
-            when(bloc.state).thenReturn(
-                const TvDetailState(
-                  isDetailLoading: false,
-                  isRecommendationLoading: false,
-                  isSaved: false,
-                  tv: testTvDetail,
-                  recommendations: <Tv>[],
-                  saveErrorMessage: 'Failed',
-                  saveMessage: null,
-                  message: null,
-                ));
-        // when(bloc.tvState).thenReturn(RequestState.Loaded);
-        // when(bloc.tv).thenReturn(testTvDetail);
-        // when(bloc.recommendationState).thenReturn(RequestState.Loaded);
-        // when(bloc.tvRecommendations).thenReturn(<Tv>[]);
-        // when(bloc.isAddedtoWatchlist).thenReturn(false);
-        // when(bloc.watchlistMessage).thenReturn('Failed');
+      'Watchlist button should display SnackBar when add to watchlist failed',
+      (WidgetTester tester) async {
+    when(bloc.state).thenReturn(const TvDetailState(
+      isDetailLoading: false,
+      isRecommendationLoading: false,
+      isSaved: false,
+      tv: testTvDetail,
+      recommendations: <Tv>[],
+      saveErrorMessage: null,
+      saveMessage: null,
+      message: null,
+    ));
+    when(bloc.stream).thenAnswer((_) => Stream.fromIterable([
+      const TvDetailState(
+        isDetailLoading: false,
+        isRecommendationLoading: false,
+        isSaved: false,
+        tv: testTvDetail,
+        recommendations: <Tv>[],
+        saveErrorMessage: 'Failed',
+        saveMessage: null,
+        message: null,
+      ),
+      const TvDetailState(
+        isDetailLoading: false,
+        isRecommendationLoading: false,
+        isSaved: false,
+        tv: testTvDetail,
+        recommendations: <Tv>[],
+        saveErrorMessage: 'Failed',
+        saveMessage: null,
+        message: null,
+      )
+    ]));
 
-        final watchlistButton = find.byType(ElevatedButton);
+    final watchlistButton = find.byType(ElevatedButton);
 
-        await tester.pumpWidget(_makeTestableWidget(const TvShowDetailPage(id: 1)));
+    await tester.pumpWidget(_makeTestableWidget(const TvShowDetailPage(id: 1)));
 
-        expect(find.byIcon(Icons.add), findsOneWidget);
+    expect(find.byIcon(Icons.add), findsOneWidget);
 
-        await tester.tap(watchlistButton);
-        await tester.pump();
+    await tester.tap(watchlistButton);
+    await tester.pump();
 
-        expect(find.byType(AlertDialog), findsOneWidget);
-        expect(find.text('Failed'), findsOneWidget);
-      });
+    expect(find.byType(SnackBar), findsOneWidget);
+    expect(find.text('Failed'), findsOneWidget);
+  });
 }

@@ -15,8 +15,8 @@ class MovieTopRatedCubit extends Cubit<MovieTopRatedState> {
     final result = await _topRated.execute();
 
     result.fold(
-      (failure) => MovieTopRatedError(failure.message),
-      (data) => MovieTopRatedHasData(data),
+      (failure) => emit(MovieTopRatedError(failure.message)),
+      (data) => emit(MovieTopRatedHasData(data)),
     );
   }
 }

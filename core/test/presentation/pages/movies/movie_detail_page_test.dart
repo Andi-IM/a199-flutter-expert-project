@@ -27,25 +27,65 @@ void main() {
     );
   }
 
-  testWidgets(
-      'Watchlist button should display add icon when movie not added to watchlist',
+  testWidgets('Should show loading widget when fetching data',
       (WidgetTester tester) async {
-        when(bloc.state).thenReturn(
+    when(bloc.state).thenReturn(
+      const MovieDetailState(
+        isDetailLoading: true,
+        isRecommendationLoading: true,
+        isSaved: false,
+        movie: null,
+        recommendations: null,
+        saveErrorMessage: null,
+        saveMessage: null,
+        message: null,
+      ),
+    );
+    when(bloc.stream).thenAnswer((_) => Stream.value(
           const MovieDetailState(
-            isDetailLoading: false,
-            isRecommendationLoading: false,
+            isDetailLoading: true,
+            isRecommendationLoading: true,
             isSaved: false,
-            movie: testMovieDetail,
-            recommendations: <Movie>[],
+            movie: null,
+            recommendations: null,
             saveErrorMessage: null,
             saveMessage: null,
             message: null,
-          ));
-    // when(mockNotifier.movieState).thenReturn(RequestState.Loaded);
-    // when(mockNotifier.movie).thenReturn(testMovieDetail);
-    // when(mockNotifier.recommendationState).thenReturn(RequestState.Loaded);
-    // when(mockNotifier.movieRecommendations).thenReturn(<Movie>[]);
-    // when(mockNotifier.isAddedToWatchlist).thenReturn(false);
+          ),
+        ));
+
+    await tester.pumpWidget(_makeTestableWidget(const MovieDetailPage(id: 1)));
+
+    expect(find.byKey(const Key('detail_loading')), findsOneWidget);
+  });
+
+  testWidgets(
+      'Watchlist button should display add icon when movie not added to watchlist',
+      (WidgetTester tester) async {
+    when(bloc.state).thenReturn(const MovieDetailState(
+      isDetailLoading: false,
+      isRecommendationLoading: false,
+      isSaved: false,
+      movie: testMovieDetail,
+      recommendations: <Movie>[],
+      saveErrorMessage: null,
+      saveMessage: null,
+      message: null,
+    ));
+    when(bloc.stream).thenAnswer(
+      (_) => Stream.value(
+        const MovieDetailState(
+          isDetailLoading: false,
+          isRecommendationLoading: false,
+          isSaved: false,
+          movie: testMovieDetail,
+          recommendations: <Movie>[],
+          saveErrorMessage: null,
+          saveMessage: null,
+          message: null,
+        ),
+      ),
+    );
 
     final watchlistButtonIcon = find.byIcon(Icons.add);
 
@@ -55,24 +95,30 @@ void main() {
   });
 
   testWidgets(
-      'Watchlist button should dispay check icon when movie is added to wathclist',
+      'Watchlist button should display check icon when movie is added to watchlist',
       (WidgetTester tester) async {
-        when(bloc.state).thenReturn(
-            const MovieDetailState(
-              isDetailLoading: false,
-              isRecommendationLoading: false,
-              isSaved: true,
-              movie: testMovieDetail,
-              recommendations: <Movie>[],
-              saveErrorMessage: null,
-              saveMessage: null,
-              message: null,
-            ));
-    // when(bloc.movieState).thenReturn(RequestState.Loaded);
-    // when(bloc.movie).thenReturn(testMovieDetail);
-    // when(bloc.recommendationState).thenReturn(RequestState.Loaded);
-    // when(bloc.movieRecommendations).thenReturn(<Movie>[]);
-    // when(bloc.isAddedToWatchlist).thenReturn(true);
+    when(bloc.state).thenReturn(const MovieDetailState(
+      isDetailLoading: false,
+      isRecommendationLoading: false,
+      isSaved: true,
+      movie: testMovieDetail,
+      recommendations: <Movie>[],
+      saveErrorMessage: null,
+      saveMessage: null,
+      message: null,
+    ));
+    when(bloc.stream).thenAnswer((_) => Stream.value(
+        const MovieDetailState(
+          isDetailLoading: false,
+          isRecommendationLoading: false,
+          isSaved: true,
+          movie: testMovieDetail,
+          recommendations: <Movie>[],
+          saveErrorMessage: null,
+          saveMessage: null,
+          message: null,
+        ),
+      ));
 
     final watchlistButtonIcon = find.byIcon(Icons.check);
 
@@ -84,24 +130,38 @@ void main() {
   testWidgets(
       'Watchlist button should display Snackbar when added to watchlist',
       (WidgetTester tester) async {
-        when(bloc.state).thenReturn(
-            const MovieDetailState(
-              isDetailLoading: false,
-              isRecommendationLoading: false,
-              isSaved: false,
-              movie: testMovieDetail,
-              recommendations: <Movie>[],
-              saveErrorMessage: null,
-              saveMessage: 'Added to Watchlist',
-              message: null,
-            ));
-    // when(bloc.movieState).thenReturn(RequestState.Loaded);
-    // when(bloc.movie).thenReturn(testMovieDetail);
-    // when(bloc.recommendationState).thenReturn(RequestState.Loaded);
-    // when(bloc.movieRecommendations).thenReturn(<Movie>[]);
-    // when(bloc.isAddedToWatchlist).thenReturn(false);
-    // when(bloc.watchlistMessage).thenReturn('Added to Watchlist');
-
+    when(bloc.state).thenReturn(const MovieDetailState(
+      isDetailLoading: false,
+      isRecommendationLoading: false,
+      isSaved: false,
+      movie: testMovieDetail,
+      recommendations: <Movie>[],
+      saveErrorMessage: null,
+      saveMessage: null,
+      message: null,
+    ));
+    when(bloc.stream).thenAnswer((_) => Stream.fromIterable([
+          const MovieDetailState(
+            isDetailLoading: false,
+            isRecommendationLoading: false,
+            isSaved: false,
+            movie: testMovieDetail,
+            recommendations: <Movie>[],
+            saveErrorMessage: null,
+            saveMessage: 'Added to Watchlist',
+            message: null,
+          ),
+          const MovieDetailState(
+            isDetailLoading: false,
+            isRecommendationLoading: false,
+            isSaved: true,
+            movie: testMovieDetail,
+            recommendations: <Movie>[],
+            saveErrorMessage: null,
+            saveMessage: null,
+            message: null,
+          )
+        ]));
     final watchlistButton = find.byType(ElevatedButton);
 
     await tester.pumpWidget(_makeTestableWidget(const MovieDetailPage(id: 1)));
@@ -116,25 +176,40 @@ void main() {
   });
 
   testWidgets(
-      'Watchlist button should display AlertDialog when add to watchlist failed',
+      'Watchlist button should display SnackBar when add to watchlist failed',
       (WidgetTester tester) async {
-        when(bloc.state).thenReturn(
-            const MovieDetailState(
-              isDetailLoading: false,
-              isRecommendationLoading: false,
-              isSaved: false,
-              movie: testMovieDetail,
-              recommendations: <Movie>[],
-              saveErrorMessage: 'Failed',
-              saveMessage: null,
-              message: null,
-            ));
-    // when(bloc.movieState).thenReturn(RequestState.Loaded);
-    // when(bloc.movie).thenReturn(testMovieDetail);
-    // when(bloc.recommendationState).thenReturn(RequestState.Loaded);
-    // when(bloc.movieRecommendations).thenReturn(<Movie>[]);
-    // when(bloc.isAddedToWatchlist).thenReturn(false);
-    // when(bloc.watchlistMessage).thenReturn('Failed');
+    when(bloc.state).thenReturn(const MovieDetailState(
+        isDetailLoading: false,
+        isRecommendationLoading: false,
+        isSaved: false,
+        movie: testMovieDetail,
+        recommendations: <Movie>[],
+        saveErrorMessage: null,
+        saveMessage: null,
+        message: null,
+      ));
+    when(bloc.stream).thenAnswer((_) => Stream.fromIterable([
+          const MovieDetailState(
+            isDetailLoading: false,
+            isRecommendationLoading: false,
+            isSaved: false,
+            movie: testMovieDetail,
+            recommendations: <Movie>[],
+            saveErrorMessage: 'Failed',
+            saveMessage: null,
+            message: null,
+          ),
+          const MovieDetailState(
+            isDetailLoading: false,
+            isRecommendationLoading: false,
+            isSaved: false,
+            movie: testMovieDetail,
+            recommendations: <Movie>[],
+            saveErrorMessage: 'Failed',
+            saveMessage: null,
+            message: null,
+          ),
+        ]));
 
     final watchlistButton = find.byType(ElevatedButton);
 
@@ -145,7 +220,7 @@ void main() {
     await tester.tap(watchlistButton);
     await tester.pump();
 
-    expect(find.byType(AlertDialog), findsOneWidget);
+    expect(find.byType(SnackBar), findsOneWidget);
     expect(find.text('Failed'), findsOneWidget);
   });
 }

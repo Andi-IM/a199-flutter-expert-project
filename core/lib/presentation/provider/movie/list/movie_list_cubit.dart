@@ -15,8 +15,8 @@ class MovieNowPlayingCubit extends Cubit<MovieNowPlayingState> {
     final result = await _nowPlaying.execute();
 
     result.fold(
-          (failure) => MovieNowPlayingError(failure.message),
-          (data) => MovieNowPlayingHasData(data),
+          (failure) => emit(MovieNowPlayingError(failure.message)),
+          (data) => emit(MovieNowPlayingHasData(data)),
     );
   }
 }

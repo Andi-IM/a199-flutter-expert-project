@@ -39,6 +39,7 @@ class _TvShowDetailPageState extends State<TvShowDetailPage> {
         builder: (_, state) {
           if (state.isDetailLoading) {
             return const Center(
+              key: Key('detail_loading'),
               child: CircularProgressIndicator(),
             );
           } else if (state.hasError) {

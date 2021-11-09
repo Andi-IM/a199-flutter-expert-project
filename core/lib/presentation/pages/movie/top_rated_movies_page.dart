@@ -34,10 +34,12 @@ class _TopRatedMoviesPageState extends State<TopRatedMoviesPage> {
           builder: (context, state) {
             if (state is MovieTopRatedLoading) {
               return const Center(
+                key: Key('loading'),
                 child: CircularProgressIndicator(),
               );
             } else if (state is MovieTopRatedHasData) {
               return ListView.builder(
+                key: const Key('list'),
                 itemBuilder: (context, index) {
                   final movie = state.movies[index];
                   return MovieCard(movie);

@@ -39,6 +39,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
         builder: (context, state) {
           if (state.isDetailLoading) {
             return const Center(
+              key: Key('detail_loading'),
               child: CircularProgressIndicator(),
             );
           } else if (state.hasError) {
@@ -68,7 +69,7 @@ class DetailContent extends StatelessWidget {
 
     showSnackBar(String message) {
       ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text(message)));
+          .showSnackBar(SnackBar(content: Text(message), key: const Key('sbMessage'),));
     }
 
     return Stack(
@@ -113,6 +114,11 @@ class DetailContent extends StatelessWidget {
                               listener: (context, state){
                                 if (state.saveMessage != null) {
                                   showSnackBar(state.saveMessage ?? 'No Message');
+                                }
+
+                                if (state.isSaveError) {
+                                  showSnackBar(
+                                      state.saveErrorMessage ?? 'No Message');
                                 }
                               },
                               builder: (_, state) {

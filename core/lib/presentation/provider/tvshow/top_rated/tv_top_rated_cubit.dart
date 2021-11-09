@@ -15,8 +15,8 @@ class TvTopRatedCubit extends Cubit<TvTopRatedState> {
     final result = await _topRated.execute();
 
     result.fold(
-      (failure) => TvTopRatedError(failure.message),
-      (data) => TvTopRatedHasData(data),
+      (failure) => emit(TvTopRatedError(failure.message)),
+      (data) => emit(TvTopRatedHasData(data)),
     );
   }
 }
