@@ -33,8 +33,8 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (_) => di.locator<SearchBloc>(),
         ),
-        ChangeNotifierProvider(
-          create: (_) => di.locator<TopRatedMoviesNotifier>(),
+        BlocProvider(
+          create: (_) => di.locator<MovieTopRatedCubit>(),
         ),
         BlocProvider(
           create: (_) => di.locator<MoviePopularCubit>(),
@@ -51,8 +51,8 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (_) => di.locator<TvSearchBloc>(),
         ),
-        ChangeNotifierProvider(
-          create: (_) => di.locator<TvTopRatedNotifier>(),
+        BlocProvider(
+          create: (_) => di.locator<TvTopRatedCubit>(),
         ),
         BlocProvider(
           create: (_) => di.locator<TvPopularCubit>(),
