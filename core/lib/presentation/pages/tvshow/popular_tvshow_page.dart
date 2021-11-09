@@ -1,8 +1,8 @@
+import 'package:core/presentation/provider/tvshow/popular/tv_popular_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 
-import '../../../utils/state_enum.dart';
-import '../../provider/tvshow/popular/tv_popular_notifier.dart';
 import '../../widgets/tv_card_list.dart';
 
 class PopularTvShowsPage extends StatefulWidget {
@@ -19,9 +19,7 @@ class _PopularTvShowsPageState extends State<PopularTvShowsPage> {
   @override
   void initState() {
     super.initState();
-    Future.microtask(() =>
-        Provider.of<TvPopularNotifier>(context, listen: false)
-            .fetchPopularTvs());
+    context.read<TvPopularCubit>().getPopular();
   }
 
   @override
@@ -32,25 +30,27 @@ class _PopularTvShowsPageState extends State<PopularTvShowsPage> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Consumer<TvPopularNotifier>(
-          builder: (context, data, child) {
-            if (data.state == RequestState.Loading) {
+        child: BlocBuilder<TvPopularCubit, TvPopularState>(
+          builder: (context, state) {
+            if (state is TvPopularLoading) {
               return const Center(
                 child: CircularProgressIndicator(),
               );
-            } else if (data.state == RequestState.Loaded) {
+            } else if (state is TvPopularHasData) {
               return ListView.builder(
                 itemBuilder: (context, index) {
-                  final tv = data.tvs[index];
+                  final tv = state.tvs[index];
                   return TvCard(tv);
                 },
-                itemCount: data.tvs.length,
+                itemCount: state.tvs.length,
               );
-            } else {
+            } else if (state is TvPopularError) {
               return Center(
                 key: const Key('error_message'),
-                child: Text(data.message),
+                child: Text(state.message),
               );
+            } else {
+              return Container();
             }
           },
         ),

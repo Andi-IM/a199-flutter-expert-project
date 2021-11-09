@@ -20,11 +20,6 @@ void init() {
     ),
   );
   locator.registerFactory(
-    () => PopularMoviesNotifier(
-      locator(),
-    ),
-  );
-  locator.registerFactory(
     () => TopRatedMoviesNotifier(
       getTopRatedMovies: locator(),
     ),
@@ -34,11 +29,6 @@ void init() {
       getTvOnTheAir: locator(),
       getTvPopular: locator(),
       getTvTopRated: locator(),
-    ),
-  );
-  locator.registerFactory(
-    () => TvPopularNotifier(
-      getTvPopular: locator(),
     ),
   );
   locator.registerFactory(
@@ -68,6 +58,21 @@ void init() {
       locator(),
       locator(),
     ),
+  );
+  locator.registerFactory(
+    () => TvDetailCubit(
+      locator(),
+      locator(),
+      locator(),
+      locator(),
+      locator(),
+    ),
+  );
+  locator.registerFactory(
+    () => MoviePopularCubit(locator()),
+  );
+  locator.registerFactory(
+    () => TvPopularCubit(locator()),
   );
 
   // use case movie
