@@ -10,7 +10,7 @@ class Season extends Equatable {
       required this.posterPath,
       required this.seasonNumber});
 
-  final String airDate;
+  final String? airDate;
   final int episodeCount;
   final int id;
   final String name;

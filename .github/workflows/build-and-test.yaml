@@ -4,9 +4,11 @@ on:
   push:
     branches:
       - modularization
+      - main
   pull_request:
     branches:
       - modularization
+      - main
 
 jobs:
   build:

@@ -30,7 +30,7 @@ class TvDetailResponse extends Equatable {
     required this.voteCount,
   });
 
-  final String backdropPath;
+  final String? backdropPath;
   final List<int> episodeRunTime;
   final String firstAirDate;
   final List<String> originCountry;
