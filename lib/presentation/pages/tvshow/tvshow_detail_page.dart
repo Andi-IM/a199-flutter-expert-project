@@ -5,7 +5,6 @@ import 'package:ditonton/domain/entities/genre.dart';
 import 'package:ditonton/domain/entities/season.dart';
 import 'package:ditonton/domain/entities/tv.dart';
 import 'package:ditonton/domain/entities/tv_detail.dart';
-import 'package:ditonton/presentation/pages/tvshow/watchlist_tv_page.dart';
 import 'package:ditonton/presentation/provider/tv_detail_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -277,10 +276,7 @@ class DetailContent extends StatelessWidget {
             foregroundColor: Colors.white,
             child: IconButton(
               icon: Icon(Icons.arrow_back),
-              onPressed: () {
-                Navigator.popAndPushNamed(
-                    context, WatchlistTvShowsPage.ROUTE_NAME);
-              },
+              onPressed: () => Navigator.pop(context),
             ),
           ),
         )

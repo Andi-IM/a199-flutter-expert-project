@@ -32,8 +32,7 @@ class _CustomDrawerState extends State<CustomDrawer>
         children: [
           UserAccountsDrawerHeader(
             currentAccountPicture: CircleAvatar(
-              backgroundImage: NetworkImage(
-                  'https://d17ivq9b7rppb3.cloudfront.net/original/jobs/turut_berkontribusi_memajungan_dunia_it_di_indonesia_270619074639.jpeg'),
+              backgroundImage: AssetImage('assets/circle-g.png'),
             ),
             accountName: Text('Ditonton'),
             accountEmail: Text('ditonton@dicoding.com'),
