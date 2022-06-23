@@ -7,9 +7,7 @@ import 'package:ditonton/presentation/pages/tvshow/search_tvshow_page.dart';
 import 'package:ditonton/presentation/pages/tvshow/top_rated_tvshow_page.dart';
 import 'package:ditonton/presentation/pages/tvshow/tvshow_detail_page.dart';
 import 'package:ditonton/presentation/provider/tv_list_notifier.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 
 class HomeTvShowPage extends StatefulWidget {

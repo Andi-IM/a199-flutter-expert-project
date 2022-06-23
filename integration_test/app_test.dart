@@ -15,6 +15,6 @@ void main() {
     // do
 
     // assert
-    expect(true, true);
+    expect(drawer, findsOneWidget);
   });
 }
