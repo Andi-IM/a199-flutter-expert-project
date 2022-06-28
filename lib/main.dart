@@ -1,34 +1,11 @@
-import 'package:ditonton/common/constants.dart';
+import 'package:about/about.dart';
+import 'package:about/about.dart';
+import 'package:core/core.dart';
 import 'package:ditonton/injection.dart' as di;
-import 'package:ditonton/presentation/pages/about_page.dart';
-import 'package:ditonton/presentation/pages/movie/home_movie_page.dart';
-import 'package:ditonton/presentation/pages/movie/movie_detail_page.dart';
-import 'package:ditonton/presentation/pages/movie/popular_movies_page.dart';
-import 'package:ditonton/presentation/pages/movie/search_page.dart';
-import 'package:ditonton/presentation/pages/movie/top_rated_movies_page.dart';
-import 'package:ditonton/presentation/pages/movie/watchlist_movies_page.dart';
-import 'package:ditonton/presentation/pages/tvshow/home_tvshow_page.dart';
-import 'package:ditonton/presentation/pages/tvshow/popular_tvshow_page.dart';
-import 'package:ditonton/presentation/pages/tvshow/search_tvshow_page.dart';
-import 'package:ditonton/presentation/pages/tvshow/top_rated_tvshow_page.dart';
-import 'package:ditonton/presentation/pages/tvshow/tvshow_detail_page.dart';
-import 'package:ditonton/presentation/pages/tvshow/watchlist_tv_page.dart';
-import 'package:ditonton/presentation/provider/movie_detail_notifier.dart';
-import 'package:ditonton/presentation/provider/movie_list_notifier.dart';
-import 'package:ditonton/presentation/provider/movie_search_notifier.dart';
-import 'package:ditonton/presentation/provider/popular_movies_notifier.dart';
-import 'package:ditonton/presentation/provider/top_rated_movies_notifier.dart';
-import 'package:ditonton/presentation/provider/tv_detail_notifier.dart';
-import 'package:ditonton/presentation/provider/tv_list_notifier.dart';
-import 'package:ditonton/presentation/provider/tv_popular_notifier.dart';
-import 'package:ditonton/presentation/provider/tv_search_notifier.dart';
-import 'package:ditonton/presentation/provider/tv_top_rated_notifier.dart';
-import 'package:ditonton/presentation/provider/tv_watchlist_notifier.dart';
-import 'package:ditonton/presentation/provider/watchlist_movie_notifier.dart';
-import 'package:ditonton/presentation/widgets/custom_drawer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:search/search.dart';
 
 void main() {
   di.init();
