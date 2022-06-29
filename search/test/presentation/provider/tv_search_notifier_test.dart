@@ -54,7 +54,7 @@ void main() {
       // act
       provider.fetchTvSearch(tQuery);
       // assert
-      expect(provider.state, RequestState.Loading);
+      expect(provider.state, RequestState.loading);
     });
 
     test('should change search result data when data is gotten successfully',
@@ -65,18 +65,18 @@ void main() {
       // act
       await provider.fetchTvSearch(tQuery);
       // assert
-      expect(provider.state, RequestState.Loaded);
+      expect(provider.state, RequestState.loaded);
       expect(provider.searchResult, tTvList);
       expect(listenerCallCount, 2);
     });
     test('should return error when data is unsuccessful', () async {
       // arrange
       when(mockSearchTvs.execute(tQuery))
-          .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
+          .thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
       // act
       await provider.fetchTvSearch(tQuery);
       // assert
-      expect(provider.state, RequestState.Error);
+      expect(provider.state, RequestState.error);
       expect(provider.message, 'Server Failure');
       expect(listenerCallCount, 2);
     });

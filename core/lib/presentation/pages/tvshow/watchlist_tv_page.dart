@@ -36,11 +36,11 @@ class _WatchlistTvShowsPageState extends State<WatchlistTvShowsPage> {
         padding: const EdgeInsets.all(8.0),
         child: Consumer<TvWatchlistNotifier>(
           builder: (context, data, child) {
-            if (data.watchlistState == RequestState.Loading) {
+            if (data.watchlistState == RequestState.loading) {
               return const Center(
                 child: CircularProgressIndicator(),
               );
-            } else if (data.watchlistState == RequestState.Loaded) {
+            } else if (data.watchlistState == RequestState.loaded) {
               return ListView.builder(
                 itemBuilder: (context, index) {
                   final tv = data.watchlistTvs[index];

@@ -1,6 +1,6 @@
 import 'package:about/about.dart';
-import 'package:about/about.dart';
 import 'package:core/core.dart';
+import 'package:core/utils/routes.dart';
 import 'package:ditonton/injection.dart' as di;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -71,39 +71,39 @@ class MyApp extends StatelessWidget {
         ),
         onGenerateRoute: (RouteSettings settings) {
           switch (settings.name) {
-            case HomeMoviePage.ROUTE_NAME:
+            case home:
               return MaterialPageRoute(builder: (_) => HomeMoviePage());
-            case PopularMoviesPage.ROUTE_NAME:
+            case popularMoviesRoute:
               return CupertinoPageRoute(builder: (_) => PopularMoviesPage());
-            case TopRatedMoviesPage.ROUTE_NAME:
+            case topRatedRoute:
               return CupertinoPageRoute(builder: (_) => TopRatedMoviesPage());
-            case MovieDetailPage.ROUTE_NAME:
+            case movieDetailRoute:
               final id = settings.arguments as int;
               return MaterialPageRoute(
                 builder: (_) => MovieDetailPage(id: id),
                 settings: settings,
               );
-            case SearchPage.ROUTE_NAME:
+            case searchRoute:
               return CupertinoPageRoute(builder: (_) => SearchPage());
-            case WatchlistMoviesPage.ROUTE_NAME:
+            case watchlistRoute:
               return MaterialPageRoute(builder: (_) => WatchlistMoviesPage());
-            case AboutPage.ROUTE_NAME:
+            case aboutRoute:
               return MaterialPageRoute(builder: (_) => AboutPage());
-            case HomeTvShowPage.ROUTE_NAME:
+            case tvRoute:
               return MaterialPageRoute(builder: (_) => HomeTvShowPage());
-            case PopularTvShowsPage.ROUTE_NAME:
+            case popularTvsRoute:
               return CupertinoPageRoute(builder: (_) => PopularTvShowsPage());
-            case TopRatedTvShowsPage.ROUTE_NAME:
+            case topRatedTvRoute:
               return CupertinoPageRoute(builder: (_) => TopRatedTvShowsPage());
-            case TvShowDetailPage.ROUTE_NAME:
+            case tvDetailRoute:
               final id = settings.arguments as int;
               return MaterialPageRoute(
                 builder: (_) => TvShowDetailPage(id: id),
                 settings: settings,
               );
-            case SearchTvShowsPage.ROUTE_NAME:
+            case searchTvRoute:
               return CupertinoPageRoute(builder: (_) => SearchTvShowsPage());
-            case WatchlistTvShowsPage.ROUTE_NAME:
+            case watchlistTvRoute:
               return MaterialPageRoute(builder: (_) => WatchlistTvShowsPage());
             default:
               return MaterialPageRoute(builder: (_) {

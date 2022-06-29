@@ -1,10 +1,10 @@
+import 'package:core/domain/entities/tv.dart';
 import 'package:dartz/dartz.dart';
-import 'package:ditonton/domain/entities/tv.dart';
-import 'package:ditonton/domain/usecases/search_tvs.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
+import 'package:search/domain/usecases/search_tvs.dart';
 
-import '../../helpers/test_helper.mocks.dart';
+import '../../../core/test/helpers/test_helper.mocks.dart';
 
 void main() {
   late SearchTvs usecase;
@@ -16,7 +16,7 @@ void main() {
   });
 
   final tTvs = <Tv>[];
-  final tQuery = 'Game of Thrones';
+  const tQuery = 'Game of Thrones';
 
   test('should get list of movies from the repository', () async {
     // arrange

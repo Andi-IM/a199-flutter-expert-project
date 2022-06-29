@@ -1,9 +1,9 @@
+import 'package:core/domain/entities/movie.dart';
+import 'package:core/domain/usecases/get_top_rated_movies.dart';
+import 'package:core/presentation/provider/top_rated_movies_notifier.dart';
+import 'package:core/utils/failure.dart';
+import 'package:core/utils/state_enum.dart';
 import 'package:dartz/dartz.dart';
-import 'package:ditonton/common/failure.dart';
-import 'package:ditonton/common/state_enum.dart';
-import 'package:ditonton/domain/entities/movie.dart';
-import 'package:ditonton/domain/usecases/get_top_rated_movies.dart';
-import 'package:ditonton/presentation/provider/top_rated_movies_notifier.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
@@ -28,7 +28,7 @@ void main() {
   final tMovie = Movie(
     adult: false,
     backdropPath: 'backdropPath',
-    genreIds: [1, 2, 3],
+    genreIds: const [1, 2, 3],
     id: 1,
     originalTitle: 'originalTitle',
     overview: 'overview',
@@ -50,7 +50,7 @@ void main() {
     // act
     notifier.fetchTopRatedMovies();
     // assert
-    expect(notifier.state, RequestState.Loading);
+    expect(notifier.state, RequestState.loading);
     expect(listenerCallCount, 1);
   });
 
@@ -61,7 +61,7 @@ void main() {
     // act
     await notifier.fetchTopRatedMovies();
     // assert
-    expect(notifier.state, RequestState.Loaded);
+    expect(notifier.state, RequestState.loaded);
     expect(notifier.movies, tMovieList);
     expect(listenerCallCount, 2);
   });
@@ -69,11 +69,11 @@ void main() {
   test('should return error when data is unsuccessful', () async {
     // arrange
     when(mockGetTopRatedMovies.execute())
-        .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
+        .thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
     // act
     await notifier.fetchTopRatedMovies();
     // assert
-    expect(notifier.state, RequestState.Error);
+    expect(notifier.state, RequestState.error);
     expect(notifier.message, 'Server Failure');
     expect(listenerCallCount, 2);
   });

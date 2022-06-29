@@ -1,6 +1,6 @@
+import 'package:core/domain/entities/tv.dart';
+import 'package:core/domain/usecases/get_tv_recommendations.dart';
 import 'package:dartz/dartz.dart';
-import 'package:ditonton/domain/entities/tv.dart';
-import 'package:ditonton/domain/usecases/get_tv_recommendations.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
@@ -15,7 +15,7 @@ void main() {
     usecase = GetTvRecommendations(mockTvRepository);
   });
 
-  final tId = 1;
+  const tId = 1;
   final tTvs = <Tv>[];
 
   test('should get list of movie recommendations from the repository',

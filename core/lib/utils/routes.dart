@@ -1,3 +1,4 @@
+const home = "/home";
 const popularMoviesRoute = '/popular-movie';
 const topRatedRoute = '/top-rated-movie';
 const movieDetailRoute = '/detail';

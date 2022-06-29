@@ -1,8 +1,8 @@
+import 'package:core/domain/usecases/get_tv_watchlist.dart';
+import 'package:core/presentation/provider/tv_watchlist_notifier.dart';
+import 'package:core/utils/failure.dart';
+import 'package:core/utils/state_enum.dart';
 import 'package:dartz/dartz.dart';
-import 'package:ditonton/common/failure.dart';
-import 'package:ditonton/common/state_enum.dart';
-import 'package:ditonton/domain/usecases/get_tv_watchlist.dart';
-import 'package:ditonton/presentation/provider/tv_watchlist_notifier.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
@@ -27,7 +27,7 @@ void main() {
       });
   });
 
-  group('Tv Watchlist Notifier', (){
+  group('Tv Watchlist Notifier', () {
     test('should change tvs data when data is gotten successfully', () async {
       // arrange
       when(mockGetTvWatchlist.execute())
@@ -35,19 +35,19 @@ void main() {
       // act
       await notifier.fetchWatchlistTvs();
       // assert
-      expect(notifier.watchlistState, RequestState.Loaded);
+      expect(notifier.watchlistState, RequestState.loaded);
       expect(notifier.watchlistTvs, [testWatchlistTv]);
       expect(listenerCallCount, 2);
     });
 
     test('should return error when data is unsuccessful', () async {
       // arrange
-      when(mockGetTvWatchlist.execute())
-          .thenAnswer((_) async => Left(DatabaseFailure("Can't get data")));
+      when(mockGetTvWatchlist.execute()).thenAnswer(
+          (_) async => const Left(DatabaseFailure("Can't get data")));
       // act
       await notifier.fetchWatchlistTvs();
       // assert
-      expect(notifier.watchlistState, RequestState.Error);
+      expect(notifier.watchlistState, RequestState.error);
       expect(notifier.message, "Can't get data");
       expect(listenerCallCount, 2);
     });

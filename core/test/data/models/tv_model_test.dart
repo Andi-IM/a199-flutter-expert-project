@@ -1,9 +1,9 @@
-import 'package:ditonton/data/models/tv_model.dart';
-import 'package:ditonton/domain/entities/tv.dart';
+import 'package:core/data/models/tv_model.dart';
+import 'package:core/domain/entities/tv.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  final tTvModel = TvModel(
+  const tTvModel = TvModel(
     posterPath: "posterPath",
     popularity: 1,
     id: 1,
@@ -27,8 +27,8 @@ void main() {
     voteAverage: 1,
     overview: "overview",
     firstAirDate: "firstAirDate",
-    originCountry: [],
-    genreIds: [1, 2, 3],
+    originCountry: const [],
+    genreIds: const [1, 2, 3],
     originalLanguage: "originalLanguage",
     voteCount: 1,
     name: "name",

@@ -9,7 +9,7 @@ class TopRatedMoviesNotifier extends ChangeNotifier {
 
   TopRatedMoviesNotifier({required this.getTopRatedMovies});
 
-  RequestState _state = RequestState.Empty;
+  RequestState _state = RequestState.empty;
   RequestState get state => _state;
 
   List<Movie> _movies = [];
@@ -19,7 +19,7 @@ class TopRatedMoviesNotifier extends ChangeNotifier {
   String get message => _message;
 
   Future<void> fetchTopRatedMovies() async {
-    _state = RequestState.Loading;
+    _state = RequestState.loading;
     notifyListeners();
 
     final result = await getTopRatedMovies.execute();
@@ -27,12 +27,12 @@ class TopRatedMoviesNotifier extends ChangeNotifier {
     result.fold(
       (failure) {
         _message = failure.message;
-        _state = RequestState.Error;
+        _state = RequestState.error;
         notifyListeners();
       },
       (moviesData) {
         _movies = moviesData;
-        _state = RequestState.Loaded;
+        _state = RequestState.loaded;
         notifyListeners();
       },
     );

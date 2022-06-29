@@ -39,14 +39,14 @@ class _TvShowDetailPageState extends State<TvShowDetailPage> {
     return Scaffold(
       body: Consumer<TvDetailNotifier>(
         builder: (context, provider, child) {
-          if (provider.tvState == RequestState.Loading) {
+          if (provider.tvState == RequestState.loading) {
             return const Center(
               child: CircularProgressIndicator(),
             );
-          } else if (provider.tvState == RequestState.Loaded) {
+          } else if (provider.tvState == RequestState.loaded) {
             final tv = provider.tv;
             return SafeArea(
-              child: DetailContent(
+              child: TvDetailContent(
                 tv,
                 provider.tvRecommendations,
                 provider.isAddedtoWatchlist,
@@ -61,12 +61,12 @@ class _TvShowDetailPageState extends State<TvShowDetailPage> {
   }
 }
 
-class DetailContent extends StatelessWidget {
+class TvDetailContent extends StatelessWidget {
   final TvDetail tv;
   final List<Tv> recommendations;
   final bool isAddedWatchlist;
 
-  const DetailContent(this.tv, this.recommendations, this.isAddedWatchlist,
+  const TvDetailContent(this.tv, this.recommendations, this.isAddedWatchlist,
       {Key? key})
       : super(key: key);
 
@@ -198,15 +198,15 @@ class DetailContent extends StatelessWidget {
                             Consumer<TvDetailNotifier>(
                               builder: (context, data, child) {
                                 if (data.recommendationState ==
-                                    RequestState.Loading) {
+                                    RequestState.loading) {
                                   return const Center(
                                     child: CircularProgressIndicator(),
                                   );
                                 } else if (data.recommendationState ==
-                                    RequestState.Error) {
+                                    RequestState.error) {
                                   return Text(data.message);
                                 } else if (data.recommendationState ==
-                                    RequestState.Loaded) {
+                                    RequestState.loaded) {
                                   return SizedBox(
                                     height: 150,
                                     child: ListView.builder(

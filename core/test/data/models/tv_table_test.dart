@@ -1,13 +1,13 @@
-import 'package:ditonton/data/models/season_model.dart';
-import 'package:ditonton/data/models/tv_model.dart';
-import 'package:ditonton/data/models/tv_table.dart';
-import 'package:ditonton/domain/entities/genre.dart';
-import 'package:ditonton/domain/entities/tv.dart';
-import 'package:ditonton/domain/entities/tv_detail.dart';
+import 'package:core/data/models/season_model.dart';
+import 'package:core/data/models/tv_model.dart';
+import 'package:core/data/models/tv_table.dart';
+import 'package:core/domain/entities/genre.dart';
+import 'package:core/domain/entities/tv.dart';
+import 'package:core/domain/entities/tv_detail.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  final tTvTable = TvTable(
+  const tTvTable = TvTable(
     id: 1,
     name: 'name',
     overview: 'overview',
@@ -38,14 +38,14 @@ void main() {
     voteAverage: 4.0,
     overview: 'overview',
     firstAirDate: '2020-02-02',
-    originCountry: ['us'],
-    genres: [Genre(id: 1, name: 'action')],
+    originCountry: const ['us'],
+    genres: const [Genre(id: 1, name: 'action')],
     originalLanguage: 'en',
     voteCount: 1,
     name: 'name',
     originalName: 'originalName',
-    episodeRunTime: [10],
-    seasons: [
+    episodeRunTime: const [10],
+    seasons: const [
       SeasonModel(
         airDate: '2020-02-02',
         episodeCount: 12,
@@ -65,7 +65,7 @@ void main() {
     'name': 'name',
   };
 
-  final tTvModel = TvModel(
+  const tTvModel = TvModel(
     posterPath: "/path.jpg",
     popularity: 1,
     id: 1,

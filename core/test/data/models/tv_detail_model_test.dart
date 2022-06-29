@@ -1,12 +1,12 @@
-import 'package:ditonton/data/models/genre_model.dart';
-import 'package:ditonton/data/models/season_model.dart';
-import 'package:ditonton/data/models/tv_detail_model.dart';
-import 'package:ditonton/domain/entities/genre.dart';
-import 'package:ditonton/domain/entities/tv_detail.dart';
+import 'package:core/data/models/genre_model.dart';
+import 'package:core/data/models/season_model.dart';
+import 'package:core/data/models/tv_detail_model.dart';
+import 'package:core/domain/entities/genre.dart';
+import 'package:core/domain/entities/tv_detail.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  final tTvDetailModel = TvDetailResponse(
+  const tTvDetailModel = TvDetailResponse(
     posterPath: '/path.jpg',
     popularity: 5.0,
     id: 1,
@@ -49,14 +49,14 @@ void main() {
     voteAverage: 4.0,
     overview: 'overview',
     firstAirDate: '2020-02-02',
-    originCountry: ['us'],
-    genres: [Genre(id: 1, name: 'action')],
+    originCountry: const ['us'],
+    genres: const [Genre(id: 1, name: 'action')],
     originalLanguage: 'en',
     voteCount: 1,
     name: 'name',
     originalName: 'originalName',
-    episodeRunTime: [10],
-    seasons: [
+    episodeRunTime: const [10],
+    seasons: const [
       SeasonModel(
         airDate: '2020-02-02',
         episodeCount: 12,
@@ -73,7 +73,9 @@ void main() {
     'episode_run_time': [10],
     'first_air_date': '2020-02-02',
     'origin_country': ['us'],
-    'genres': [{'id': 1, 'name': 'action'}],
+    'genres': [
+      {'id': 1, 'name': 'action'}
+    ],
     'homepage': 'homepage',
     'id': 1,
     'in_production': false,

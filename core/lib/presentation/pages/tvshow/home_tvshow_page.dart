@@ -52,11 +52,11 @@ class _HomeTvShowPageState extends State<HomeTvShowPage> {
               ),
               Consumer<TvListProvider>(builder: (context, data, child) {
                 final state = data.onTheAirState;
-                if (state == RequestState.Loading) {
+                if (state == RequestState.loading) {
                   return const Center(
                     child: CircularProgressIndicator(),
                   );
-                } else if (state == RequestState.Loaded) {
+                } else if (state == RequestState.loaded) {
                   return TvList(data.onTheAirTvs);
                 } else {
                   return const Text('Failed');
@@ -68,11 +68,11 @@ class _HomeTvShowPageState extends State<HomeTvShowPage> {
               ),
               Consumer<TvListProvider>(builder: (context, data, child) {
                 final state = data.popularTvsState;
-                if (state == RequestState.Loading) {
+                if (state == RequestState.loading) {
                   return const Center(
                     child: CircularProgressIndicator(),
                   );
-                } else if (state == RequestState.Loaded) {
+                } else if (state == RequestState.loaded) {
                   return TvList(data.popularTvs);
                 } else {
                   return const Text('Failed');
@@ -84,11 +84,11 @@ class _HomeTvShowPageState extends State<HomeTvShowPage> {
               ),
               Consumer<TvListProvider>(builder: (context, data, child) {
                 final state = data.topRatedTvsState;
-                if (state == RequestState.Loading) {
+                if (state == RequestState.loading) {
                   return const Center(
                     child: CircularProgressIndicator(),
                   );
-                } else if (state == RequestState.Loaded) {
+                } else if (state == RequestState.loaded) {
                   return TvList(data.topRatedTvs);
                 } else {
                   return const Text('Failed');
@@ -149,7 +149,7 @@ class TvList extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: const BorderRadius.all(Radius.circular(16)),
                 child: CachedNetworkImage(
-                  imageUrl: '$BASE_IMAGE_URL${tvShow.posterPath}',
+                  imageUrl: '$baseImgUrl${tvShow.posterPath}',
                   placeholder: (context, url) => const Center(
                     child: CircularProgressIndicator(),
                   ),

@@ -1,5 +1,5 @@
-import 'package:ditonton/common/exception.dart';
-import 'package:ditonton/data/data_sources/movie_local_data_source.dart';
+import 'package:core/data/data_sources/movie_local_data_source.dart';
+import 'package:core/utils/exception.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
@@ -64,7 +64,7 @@ void main() {
   });
 
   group('Get Movie Detail By Id', () {
-    final tId = 1;
+    const tId = 1;
 
     test('should return Movie Detail Table when data is found', () async {
       // arrange

@@ -1,5 +1,5 @@
+import 'package:core/domain/usecases/get_tv_detail.dart';
 import 'package:dartz/dartz.dart';
-import 'package:ditonton/domain/usecases/get_tv_detail.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
@@ -15,7 +15,7 @@ void main() {
     usecase = GetTvDetail(mockTvRepository);
   });
 
-  final tId = 1;
+  const tId = 1;
 
   test('should get tv detail from the repository', () async {
     // arrange
