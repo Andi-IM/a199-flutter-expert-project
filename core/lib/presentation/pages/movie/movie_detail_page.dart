@@ -183,6 +183,7 @@ class DetailContent extends StatelessWidget {
                             ),
                             Text(
                               movie.overview,
+                              style: kBodyText,
                             ),
                             const SizedBox(height: 16),
                             Text(

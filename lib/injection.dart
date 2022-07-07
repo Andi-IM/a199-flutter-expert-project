@@ -7,6 +7,17 @@ import 'package:search/search.dart';
 final locator = GetIt.instance;
 
 void init() {
+  // bloc
+  locator.registerFactory(
+    () => SearchBloc(
+      locator(),
+    ),
+  );
+  locator.registerFactory(
+    () => TvSearchBloc(
+      locator(),
+    ),
+  );
   // provider
   locator.registerFactory(
     () => MovieListNotifier(
@@ -22,11 +33,6 @@ void init() {
       getWatchListStatus: locator(),
       saveWatchlist: locator(),
       removeWatchlist: locator(),
-    ),
-  );
-  locator.registerFactory(
-    () => MovieSearchNotifier(
-      searchMovies: locator(),
     ),
   );
   locator.registerFactory(
@@ -63,11 +69,6 @@ void init() {
   locator.registerFactory(
     () => TvPopularNotifier(
       getTvPopular: locator(),
-    ),
-  );
-  locator.registerFactory(
-    () => TvSearchNotifier(
-      searchTvs: locator(),
     ),
   );
   locator.registerFactory(

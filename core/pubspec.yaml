@@ -23,6 +23,7 @@ dependencies:
     git:
       url: https://github.com/chornthorn/data_connection_checker.git
       ref: master
+  flutter_bloc: ^8.0.0    
 
 dev_dependencies:
   flutter_test:
@@ -30,6 +31,7 @@ dev_dependencies:
   flutter_lints: ^1.0.0
   mockito: ^5.0.8
   build_runner: ^2.0.4
+  bloc_test: ^9.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
