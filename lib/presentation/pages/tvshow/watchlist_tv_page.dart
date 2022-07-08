@@ -1,4 +1,5 @@
 import 'package:ditonton/common/state_enum.dart';
+import 'package:ditonton/common/utils.dart';
 import 'package:ditonton/presentation/provider/tv_watchlist_notifier.dart';
 import 'package:ditonton/presentation/widgets/tv_card_list.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +12,8 @@ class WatchlistTvShowsPage extends StatefulWidget {
   _WatchlistTvShowsPageState createState() => _WatchlistTvShowsPageState();
 }
 
-class _WatchlistTvShowsPageState extends State<WatchlistTvShowsPage> {
+class _WatchlistTvShowsPageState extends State<WatchlistTvShowsPage>
+    with RouteAware {
   @override
   void initState() {
     super.initState();
@@ -21,13 +23,20 @@ class _WatchlistTvShowsPageState extends State<WatchlistTvShowsPage> {
   }
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    routeObserver.subscribe(this, ModalRoute.of(context)!);
+  }
+
+  void didPopNext() {
+    Provider.of<TvWatchlistNotifier>(context, listen: false)
+        .fetchWatchlistTvs();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          onPressed: () => Navigator.popUntil(context, ModalRoute.withName('/')),
-          icon: Icon(Icons.arrow_back),
-        ),
         title: Text('TvShow Watchlist'),
       ),
       body: Padding(
@@ -56,5 +65,11 @@ class _WatchlistTvShowsPageState extends State<WatchlistTvShowsPage> {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    routeObserver.unsubscribe(this);
+    super.dispose();
   }
 }
