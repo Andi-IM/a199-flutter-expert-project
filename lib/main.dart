@@ -70,6 +70,7 @@ class MyApp extends StatelessWidget {
             content: HomeMoviePage(),
           ),
         ),
+        navigatorObservers: [routeObserver],
         onGenerateRoute: (RouteSettings settings) {
           switch (settings.name) {
             case home:

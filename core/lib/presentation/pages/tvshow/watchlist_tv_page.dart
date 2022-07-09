@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../utils/state_enum.dart';
+import '../../../utils/utils.dart';
 import '../../provider/tv_watchlist_notifier.dart';
 import '../../widgets/tv_card_list.dart';
 
@@ -12,13 +13,26 @@ class WatchlistTvShowsPage extends StatefulWidget {
   _WatchlistTvShowsPageState createState() => _WatchlistTvShowsPageState();
 }
 
-class _WatchlistTvShowsPageState extends State<WatchlistTvShowsPage> {
+class _WatchlistTvShowsPageState extends State<WatchlistTvShowsPage>
+    with RouteAware {
   @override
   void initState() {
     super.initState();
     Future.microtask(() =>
         Provider.of<TvWatchlistNotifier>(context, listen: false)
             .fetchWatchlistTvs());
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    routeObserver.subscribe(this, ModalRoute.of(context)!);
+  }
+
+  @override
+  void didPopNext() {
+    Provider.of<TvWatchlistNotifier>(context, listen: false)
+        .fetchWatchlistTvs();
   }
 
   @override
@@ -58,5 +72,11 @@ class _WatchlistTvShowsPageState extends State<WatchlistTvShowsPage> {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    routeObserver.unsubscribe(this);
+    super.dispose();
   }
 }
