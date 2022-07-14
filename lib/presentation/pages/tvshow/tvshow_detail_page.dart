@@ -185,8 +185,7 @@ class DetailContent extends StatelessWidget {
                               'Seasons',
                               style: kHeading6,
                             ),
-                            _showSeasons(
-                                tv.seasons.map((e) => e.toEntity()).toList()),
+                            _showSeasons(tv.seasons),
                             SizedBox(height: 16),
                             Text(
                               'Recommendations',

@@ -28,4 +28,6 @@ class Season extends Equatable {
         posterPath,
         seasonNumber,
       ];
+
+  toEntity() {}
 }

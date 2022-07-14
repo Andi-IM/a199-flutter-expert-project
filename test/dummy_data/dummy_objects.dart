@@ -1,9 +1,9 @@
 import 'package:ditonton/data/models/movie_table.dart';
-import 'package:ditonton/data/models/season_model.dart';
 import 'package:ditonton/data/models/tv_table.dart';
 import 'package:ditonton/domain/entities/genre.dart';
 import 'package:ditonton/domain/entities/movie.dart';
 import 'package:ditonton/domain/entities/movie_detail.dart';
+import 'package:ditonton/domain/entities/season.dart';
 import 'package:ditonton/domain/entities/tv.dart';
 import 'package:ditonton/domain/entities/tv_detail.dart';
 
@@ -118,9 +118,9 @@ final testTvDetail = TvDetail(
   voteCount: 1,
   name: 'name',
   originalName: 'originalName',
-  episodeRunTime: [1,2,3,4],
+  episodeRunTime: [1, 2, 3, 4],
   seasons: [
-    SeasonModel(
+    Season(
       airDate: '2020-03-03',
       episodeCount: 12,
       id: 11,

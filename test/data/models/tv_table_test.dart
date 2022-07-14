@@ -1,7 +1,7 @@
-import 'package:ditonton/data/models/season_model.dart';
 import 'package:ditonton/data/models/tv_model.dart';
 import 'package:ditonton/data/models/tv_table.dart';
 import 'package:ditonton/domain/entities/genre.dart';
+import 'package:ditonton/domain/entities/season.dart';
 import 'package:ditonton/domain/entities/tv.dart';
 import 'package:ditonton/domain/entities/tv_detail.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -46,7 +46,7 @@ void main() {
     originalName: 'originalName',
     episodeRunTime: [10],
     seasons: [
-      SeasonModel(
+      Season(
         airDate: '2020-02-02',
         episodeCount: 12,
         id: 11,
