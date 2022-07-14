@@ -1,10 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:core/utils/routes.dart';
 import 'package:flutter/material.dart';
 
 import '../../../domain/entities/tv.dart';
 import '../../../styles/text_styles.dart';
 import '../../../utils/constants.dart';
-import '../pages/tvshow/tvshow_detail_page.dart';
 
 class TvCard extends StatelessWidget {
   final Tv tvShow;
@@ -18,7 +18,7 @@ class TvCard extends StatelessWidget {
       child: InkWell(
         onTap: () => Navigator.pushNamed(
           context,
-          TvShowDetailPage.ROUTE_NAME,
+          TV_DETAIL_ROUTE,
           arguments: tvShow.id,
         ),
         child: Stack(

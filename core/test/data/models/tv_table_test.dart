@@ -1,7 +1,7 @@
-import 'package:core/data/models/season_model.dart';
 import 'package:core/data/models/tv_model.dart';
 import 'package:core/data/models/tv_table.dart';
 import 'package:core/domain/entities/genre.dart';
+import 'package:core/domain/entities/season.dart';
 import 'package:core/domain/entities/tv.dart';
 import 'package:core/domain/entities/tv_detail.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -46,7 +46,7 @@ void main() {
     originalName: 'originalName',
     episodeRunTime: [10],
     seasons: [
-      SeasonModel(
+      Season(
         airDate: '2020-02-02',
         episodeCount: 12,
         id: 11,

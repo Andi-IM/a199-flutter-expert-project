@@ -1,38 +1,39 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:core/presentation/cubit/movie/detail/movie_detail_cubit.dart';
 import 'package:core/utils/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 import '../../../domain/entities/genre.dart';
-import '../../../domain/entities/movie_detail.dart';
+import '../../../domain/entities/season.dart';
+import '../../../domain/entities/tv_detail.dart';
 import '../../../styles/colors.dart';
 import '../../../styles/text_styles.dart';
+import '../../cubit/tv_show/detail/tv_detail_cubit.dart';
 
-class MovieDetailPage extends StatefulWidget {
+class TvShowDetailPage extends StatefulWidget {
   final int id;
 
-  const MovieDetailPage({Key? key, required this.id}) : super(key: key);
+  const TvShowDetailPage({Key? key, required this.id}) : super(key: key);
 
   @override
-  _MovieDetailPageState createState() => _MovieDetailPageState();
+  _TvShowDetailPageState createState() => _TvShowDetailPageState();
 }
 
-class _MovieDetailPageState extends State<MovieDetailPage> {
+class _TvShowDetailPageState extends State<TvShowDetailPage> {
   @override
   void initState() {
     super.initState();
-    context.read<MovieDetailCubit>().getDetail(widget.id);
-    context.read<MovieDetailCubit>().getSaveStatus(widget.id);
+    context.read<TvDetailCubit>().getDetail(widget.id);
+    context.read<TvDetailCubit>().getSaveStatus(widget.id);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocBuilder<MovieDetailCubit, MovieDetailState>(
+      body: BlocBuilder<TvDetailCubit, TvDetailState>(
         buildWhen: (previous, current) => previous != current,
-        builder: (context, state) {
+        builder: (_, state) {
           if (state.isDetailLoading) {
             return const Center(
               key: Key('detail_loading'),
@@ -40,10 +41,10 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
             );
           } else if (state.hasError) {
             return Center(child: Text(state.message!));
-          } else if (state.isDetailLoading == false && state.movie != null) {
-            final movie = state.movie!;
+          } else if (!state.isDetailLoading && state.tv != null) {
+            final tv = state.tv!;
             return SafeArea(
-              child: DetailContent(movie),
+              child: TvDetailContent(tv),
             );
           } else {
             return Container();
@@ -54,26 +55,24 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
   }
 }
 
-class DetailContent extends StatelessWidget {
-  final MovieDetail movie;
+class TvDetailContent extends StatelessWidget {
+  final TvDetail tv;
 
-  const DetailContent(this.movie, {Key? key}) : super(key: key);
+  const TvDetailContent(this.tv, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
 
     showSnackBar(String message) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text(message),
-        key: const Key('sbMessage'),
-      ));
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(message)));
     }
 
     return Stack(
       children: [
         CachedNetworkImage(
-          imageUrl: 'https://image.tmdb.org/t/p/w500${movie.posterPath}',
+          imageUrl: 'https://image.tmdb.org/t/p/w500${tv.posterPath}',
           width: screenWidth,
           placeholder: (context, url) => const Center(
             child: CircularProgressIndicator(),
@@ -104,10 +103,10 @@ class DetailContent extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              movie.title,
+                              tv.name,
                               style: kHeading5,
                             ),
-                            BlocConsumer<MovieDetailCubit, MovieDetailState>(
+                            BlocConsumer<TvDetailCubit, TvDetailState>(
                               listenWhen: (previous, current) =>
                                   previous != current,
                               listener: (context, state) {
@@ -123,15 +122,15 @@ class DetailContent extends StatelessWidget {
                               },
                               builder: (_, state) {
                                 return ElevatedButton(
-                                  onPressed: () {
+                                  onPressed: () async {
                                     if (!state.isSaved) {
                                       context
-                                          .read<MovieDetailCubit>()
-                                          .addWatchlist(movie);
+                                          .read<TvDetailCubit>()
+                                          .addWatchlist(tv);
                                     } else {
                                       context
-                                          .read<MovieDetailCubit>()
-                                          .removeWatchlist(movie);
+                                          .read<TvDetailCubit>()
+                                          .removeWatchlist(tv);
                                     }
                                   },
                                   child: Row(
@@ -147,15 +146,15 @@ class DetailContent extends StatelessWidget {
                               },
                             ),
                             Text(
-                              _showGenres(movie.genres),
+                              _showGenres(tv.genres),
                             ),
                             Text(
-                              _showDuration(movie.runtime),
+                              _showDuration(tv.episodeRunTime.first),
                             ),
                             Row(
                               children: [
                                 RatingBarIndicator(
-                                  rating: movie.voteAverage / 2,
+                                  rating: tv.voteAverage / 2,
                                   itemCount: 5,
                                   itemBuilder: (context, index) => const Icon(
                                     Icons.star,
@@ -163,7 +162,7 @@ class DetailContent extends StatelessWidget {
                                   ),
                                   itemSize: 24,
                                 ),
-                                Text('${movie.voteAverage}')
+                                Text('${tv.voteAverage}')
                               ],
                             ),
                             const SizedBox(height: 16),
@@ -172,16 +171,22 @@ class DetailContent extends StatelessWidget {
                               style: kHeading6,
                             ),
                             Text(
-                              movie.overview,
+                              tv.overview,
                             ),
+                            const SizedBox(height: 16),
+                            Text(
+                              'Seasons',
+                              style: kHeading6,
+                            ),
+                            _showSeasons(tv.seasons),
                             const SizedBox(height: 16),
                             Text(
                               'Recommendations',
                               style: kHeading6,
                             ),
-                            BlocBuilder<MovieDetailCubit, MovieDetailState>(
-                              builder: (_, state) {
-                                if (state.isRecommendationLoading == true) {
+                            BlocBuilder<TvDetailCubit, TvDetailState>(
+                              builder: (context, state) {
+                                if (state.isRecommendationLoading) {
                                   return const Center(
                                     child: CircularProgressIndicator(),
                                   );
@@ -196,15 +201,15 @@ class DetailContent extends StatelessWidget {
                                     child: ListView.builder(
                                       scrollDirection: Axis.horizontal,
                                       itemBuilder: (context, index) {
-                                        final movie = recommendations[index];
+                                        final tv = recommendations[index];
                                         return Padding(
                                           padding: const EdgeInsets.all(4.0),
                                           child: InkWell(
                                             onTap: () {
                                               Navigator.pushReplacementNamed(
                                                 context,
-                                                MOVIE_DETAIL_ROUTE,
-                                                arguments: movie.id,
+                                                TV_DETAIL_ROUTE,
+                                                arguments: tv.id,
                                               );
                                             },
                                             child: ClipRRect(
@@ -214,18 +219,15 @@ class DetailContent extends StatelessWidget {
                                               ),
                                               child: CachedNetworkImage(
                                                 imageUrl:
-                                                    'https://image.tmdb.org/t/p/w500${movie.posterPath}',
-                                                placeholder: (_, url) {
-                                                  return const Center(
-                                                    child:
-                                                        CircularProgressIndicator(),
-                                                  );
-                                                },
-                                                errorWidget: (_, url, error) {
-                                                  return const Icon(
-                                                    Icons.error,
-                                                  );
-                                                },
+                                                    'https://image.tmdb.org/t/p/w500${tv.posterPath}',
+                                                placeholder: (context, url) =>
+                                                    const Center(
+                                                  child:
+                                                      CircularProgressIndicator(),
+                                                ),
+                                                errorWidget:
+                                                    (context, url, error) =>
+                                                        const Icon(Icons.error),
                                               ),
                                             ),
                                           ),
@@ -272,6 +274,22 @@ class DetailContent extends StatelessWidget {
           ),
         )
       ],
+    );
+  }
+
+  Widget _showSeasons(List<Season> seasons) {
+    return ListView.builder(
+      shrinkWrap: true,
+      itemCount: seasons.length,
+      itemBuilder: (context, index) {
+        return Card(
+          child: ListTile(
+            title: Text(seasons[index].name),
+            subtitle:
+                Text('${seasons[index].episodeCount.toString()} episodes'),
+          ),
+        );
+      },
     );
   }
 

@@ -1,9 +1,9 @@
 import 'package:core/data/models/movie_table.dart';
-import 'package:core/data/models/season_model.dart';
 import 'package:core/data/models/tv_table.dart';
 import 'package:core/domain/entities/genre.dart';
 import 'package:core/domain/entities/movie.dart';
 import 'package:core/domain/entities/movie_detail.dart';
+import 'package:core/domain/entities/season.dart';
 import 'package:core/domain/entities/tv.dart';
 import 'package:core/domain/entities/tv_detail.dart';
 
@@ -118,9 +118,9 @@ const testTvDetail = TvDetail(
   voteCount: 1,
   name: 'name',
   originalName: 'originalName',
-  episodeRunTime: [1,2,3,4],
+  episodeRunTime: [1, 2, 3, 4],
   seasons: [
-    SeasonModel(
+    Season(
       airDate: '2020-03-03',
       episodeCount: 12,
       id: 11,

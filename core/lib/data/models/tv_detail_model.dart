@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+
 import '../../data/models/genre_model.dart';
 import '../../data/models/season_model.dart';
 import '../../domain/entities/tv_detail.dart';
@@ -113,7 +114,7 @@ class TvDetailResponse extends Equatable {
     return TvDetail(
       posterPath: posterPath,
       popularity: popularity,
-      seasons: seasons,
+      seasons: seasons.map((season) => season.toEntity()).toList(),
       episodeRunTime: episodeRunTime,
       id: id,
       backdropPath: backdropPath,

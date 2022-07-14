@@ -1,6 +1,6 @@
 import 'package:core/domain/entities/movie.dart';
-import 'package:core/presentation/pages/movie/top_rated_movies_page.dart';
-import 'package:core/presentation/provider/movie/top_rated/movie_top_rated_cubit.dart';
+import 'package:core/presentation/cubit/movie/top_rated/movie_top_rated_cubit.dart';
+import 'package:core/presentation/pages/movie/movie_top_rated_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
