@@ -1,6 +1,9 @@
 import 'package:core/utils/routes.dart';
 import 'package:flutter/material.dart';
 
+///
+///  Custom drawer ini berasal dari course [AdvancedUI] yang dapat diakses di
+///  https://www.dicoding.com/academies/199/tutorials/19832
 class CustomDrawer extends StatefulWidget {
   final Widget content;
 
