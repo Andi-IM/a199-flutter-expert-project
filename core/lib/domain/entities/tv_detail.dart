@@ -1,5 +1,5 @@
-import 'package:core/data/models/season_model.dart';
 import 'package:core/domain/entities/genre.dart';
+import 'package:core/domain/entities/season.dart';
 import 'package:equatable/equatable.dart';
 
 class TvDetail extends Equatable {
@@ -22,7 +22,7 @@ class TvDetail extends Equatable {
   });
 
   final String? posterPath;
-  final List<SeasonModel> seasons;
+  final List<Season> seasons;
   final double popularity;
   final List<int> episodeRunTime;
   final int id;
