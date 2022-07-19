@@ -2,14 +2,10 @@ import 'package:core/presentation/widgets/tv_card_list.dart';
 import 'package:core/styles/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:provider/provider.dart';
 
-import '../provider/tvshow/tv_search_bloc.dart';
+import '../bloc/tv_show/tv_search_bloc.dart';
 
 class SearchTvShowsPage extends StatelessWidget {
-  // ignore: constant_identifier_names
-  static const ROUTE_NAME = '/search_tv';
-
   const SearchTvShowsPage({Key? key}) : super(key: key);
 
   @override
@@ -63,7 +59,7 @@ class SearchTvShowsPage extends StatelessWidget {
                     child: Text(state.message),
                   ),
                 );
-              } else if (state is TvSearchEmpty){
+              } else if (state is TvSearchEmpty) {
                 return const Expanded(
                   child: Center(
                     child: Text("Yah Judul yang Kamu cari tidak ditemukan."),

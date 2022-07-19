@@ -11,16 +11,13 @@ import '../../../styles/text_styles.dart';
 import '../../../utils/constants.dart';
 
 class HomeTvShowPage extends StatefulWidget {
-  // ignore: constant_identifier_names
-  static const String ROUTE_NAME = '/tv_show';
-
   const HomeTvShowPage({Key? key}) : super(key: key);
 
   @override
-  _HomeTvShowPageState createState() => _HomeTvShowPageState();
+  HomeTvShowPageState createState() => HomeTvShowPageState();
 }
 
-class _HomeTvShowPageState extends State<HomeTvShowPage> {
+class HomeTvShowPageState extends State<HomeTvShowPage> {
   @override
   void initState() {
     super.initState();

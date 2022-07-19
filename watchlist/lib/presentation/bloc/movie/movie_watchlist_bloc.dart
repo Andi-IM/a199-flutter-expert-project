@@ -1,12 +1,11 @@
 import 'dart:async';
 
-import 'package:bloc/bloc.dart';
 import 'package:core/domain/entities/movie.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:watchlist/domain/usecases/get_watchlist_movies.dart';
 
 part 'movie_watchlist_event.dart';
-
 part 'movie_watchlist_state.dart';
 
 class MovieWatchlistBloc
@@ -27,7 +26,7 @@ class MovieWatchlistBloc
           yield MovieWatchlistError(failure.message);
         },
         (data) async* {
-          if (data.isEmpty){
+          if (data.isEmpty) {
             yield MovieWatchlistEmpty();
           } else {
             yield MovieWatchlistHasData(data);

@@ -1,7 +1,7 @@
-import 'package:bloc/bloc.dart';
 import 'package:core/domain/entities/tv.dart';
 import 'package:core/domain/usecases/get_tv_top_rated.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'tv_top_rated_state.dart';
 

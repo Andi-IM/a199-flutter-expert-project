@@ -2,8 +2,7 @@ import 'package:core/presentation/widgets/movie_card_list.dart';
 import 'package:core/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:provider/provider.dart';
-import 'package:watchlist/presentation/provider/movie/movie_watchlist_bloc.dart';
+import 'package:watchlist/presentation/bloc/movie/movie_watchlist_bloc.dart';
 
 class WatchlistMoviesPage extends StatefulWidget {
   // ignore: constant_identifier_names
@@ -12,10 +11,10 @@ class WatchlistMoviesPage extends StatefulWidget {
   const WatchlistMoviesPage({Key? key}) : super(key: key);
 
   @override
-  _WatchlistMoviesPageState createState() => _WatchlistMoviesPageState();
+  WatchlistMoviesPageState createState() => WatchlistMoviesPageState();
 }
 
-class _WatchlistMoviesPageState extends State<WatchlistMoviesPage>
+class WatchlistMoviesPageState extends State<WatchlistMoviesPage>
     with RouteAware {
   @override
   void initState() {

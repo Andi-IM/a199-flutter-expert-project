@@ -2,8 +2,7 @@ import 'package:core/presentation/widgets/tv_card_list.dart';
 import 'package:core/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:provider/provider.dart';
-import 'package:watchlist/presentation/provider/tvshow/tv_watchlist_bloc.dart';
+import 'package:watchlist/presentation/bloc/tv_show/tv_watchlist_bloc.dart';
 
 class WatchlistTvShowsPage extends StatefulWidget {
   // ignore: constant_identifier_names
@@ -12,10 +11,10 @@ class WatchlistTvShowsPage extends StatefulWidget {
   const WatchlistTvShowsPage({Key? key}) : super(key: key);
 
   @override
-  _WatchlistTvShowsPageState createState() => _WatchlistTvShowsPageState();
+  WatchlistTvShowsPageState createState() => WatchlistTvShowsPageState();
 }
 
-class _WatchlistTvShowsPageState extends State<WatchlistTvShowsPage>
+class WatchlistTvShowsPageState extends State<WatchlistTvShowsPage>
     with RouteAware {
   @override
   void initState() {

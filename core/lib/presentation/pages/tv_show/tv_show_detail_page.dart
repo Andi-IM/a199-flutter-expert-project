@@ -17,10 +17,10 @@ class TvShowDetailPage extends StatefulWidget {
   const TvShowDetailPage({Key? key, required this.id}) : super(key: key);
 
   @override
-  _TvShowDetailPageState createState() => _TvShowDetailPageState();
+  TvShowDetailPageState createState() => TvShowDetailPageState();
 }
 
-class _TvShowDetailPageState extends State<TvShowDetailPage> {
+class TvShowDetailPageState extends State<TvShowDetailPage> {
   @override
   void initState() {
     super.initState();
@@ -149,7 +149,9 @@ class TvDetailContent extends StatelessWidget {
                               _showGenres(tv.genres),
                             ),
                             Text(
-                              _showDuration(tv.episodeRunTime.first),
+                              _showDuration(tv.episodeRunTime.isNotEmpty
+                                  ? tv.episodeRunTime.last
+                                  : 0),
                             ),
                             Row(
                               children: [
@@ -296,7 +298,7 @@ class TvDetailContent extends StatelessWidget {
   String _showGenres(List<Genre> genres) {
     String result = '';
     for (var genre in genres) {
-      result += genre.name + ', ';
+      result += '${genre.name}, ';
     }
 
     if (result.isEmpty) {
@@ -307,9 +309,10 @@ class TvDetailContent extends StatelessWidget {
   }
 
   String _showDuration(int runtime) {
+    if (runtime == 0) return 'N/A';
+
     final int hours = runtime ~/ 60;
     final int minutes = runtime % 60;
-
     if (hours > 0) {
       return '${hours}h ${minutes}m';
     } else {

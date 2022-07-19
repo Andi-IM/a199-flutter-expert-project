@@ -6,7 +6,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:watchlist/domain/usecases/get_tv_watchlist.dart';
-import 'package:watchlist/presentation/provider/tvshow/tv_watchlist_bloc.dart';
+import 'package:watchlist/presentation/bloc/tv_show/tv_watchlist_bloc.dart';
 
 import 'tv_watchlist_bloc_test.mocks.dart';
 
@@ -63,8 +63,8 @@ void main() {
   blocTest<TvWatchlistBloc, TvWatchlistState>(
       'Should emit [Loading, Error] when get search is unsuccessful',
       build: () {
-        when(mockGetTvWatchlist.execute())
-            .thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
+        when(mockGetTvWatchlist.execute()).thenAnswer(
+            (_) async => const Left(ServerFailure('Server Failure')));
         return bloc;
       },
       act: (bloc) => bloc.add(GetWatchlist()),

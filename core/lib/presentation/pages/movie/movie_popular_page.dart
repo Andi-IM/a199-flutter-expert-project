@@ -8,10 +8,10 @@ class PopularMoviesPage extends StatefulWidget {
   const PopularMoviesPage({Key? key}) : super(key: key);
 
   @override
-  _PopularMoviesPageState createState() => _PopularMoviesPageState();
+  PopularMoviesPageState createState() => PopularMoviesPageState();
 }
 
-class _PopularMoviesPageState extends State<PopularMoviesPage> {
+class PopularMoviesPageState extends State<PopularMoviesPage> {
   @override
   void initState() {
     super.initState();

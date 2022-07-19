@@ -75,8 +75,9 @@ class TvDetailResponse extends Equatable {
         overview: json["overview"],
         popularity: json["popularity"].toDouble(),
         posterPath: json["poster_path"],
-        seasons: List<SeasonModel>.from(
-            json["seasons"].map((x) => SeasonModel.fromJson(x))),
+        seasons: List<SeasonModel>.from((json["seasons"] as List)
+            .map((x) => SeasonModel.fromJson(x))
+            .where((element) => element.airDate != null)),
         status: json["status"],
         tagline: json["tagline"],
         type: json["type"],

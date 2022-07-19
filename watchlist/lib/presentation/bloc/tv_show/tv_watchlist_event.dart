@@ -4,7 +4,6 @@ abstract class TvWatchlistEvent extends Equatable {
   const TvWatchlistEvent();
 
   @override
-  // TODO: implement props
   List<Object?> get props => [];
 }
 

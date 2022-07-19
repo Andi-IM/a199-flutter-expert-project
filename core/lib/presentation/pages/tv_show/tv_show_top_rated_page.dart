@@ -8,10 +8,10 @@ class TopRatedTvShowsPage extends StatefulWidget {
   const TopRatedTvShowsPage({Key? key}) : super(key: key);
 
   @override
-  _TopRatedTvShowsPageState createState() => _TopRatedTvShowsPageState();
+  TopRatedTvShowsPageState createState() => TopRatedTvShowsPageState();
 }
 
-class _TopRatedTvShowsPageState extends State<TopRatedTvShowsPage> {
+class TopRatedTvShowsPageState extends State<TopRatedTvShowsPage> {
   @override
   void initState() {
     super.initState();

@@ -6,7 +6,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:search/domain/usecases/search_tvs.dart';
-import 'package:search/presentation/provider/tvshow/tv_search_bloc.dart';
+import 'package:search/presentation/bloc/tv_show/tv_search_bloc.dart';
 
 import 'tv_search_bloc_test.mocks.dart';
 
