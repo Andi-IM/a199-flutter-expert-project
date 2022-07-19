@@ -3,12 +3,10 @@ name: build-and-test
 on:
   push:
     branches:
-      - modularization
-      - main
+      - submission-1
   pull_request:
     branches:
-      - modularization
-      - main
+      - submission-1
 
 jobs:
   build:
@@ -32,15 +30,6 @@ jobs:
           gpg -d --passphrase "${{ secrets.GOOGLE_SERVICES_PASSPHRASE }}" --batch google-services.json.asc > android/app/google-services.json
       - name: Install pub Depedencies
         run: flutter pub get
-      - name: Testing in Core Depedencies
+      - name: Testing
         run: |
-          cd core
-          flutter test
-      - name: Testing in Search
-        run: |
-          cd search
-          flutter test
-      - name: Testing in Watchlist
-        run: |
-          cd watchlist
           flutter test
