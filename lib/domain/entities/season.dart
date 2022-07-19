@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 
 class Season extends Equatable {
-  Season(
+  const Season(
       {required this.airDate,
       required this.episodeCount,
       required this.id,
@@ -10,7 +10,7 @@ class Season extends Equatable {
       required this.posterPath,
       required this.seasonNumber});
 
-  final String airDate;
+  final String? airDate;
   final int episodeCount;
   final int id;
   final String name;

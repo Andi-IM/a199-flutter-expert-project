@@ -4,7 +4,7 @@ import 'package:ditonton/domain/entities/tv_detail.dart';
 import 'package:equatable/equatable.dart';
 
 class TvDetailResponse extends Equatable {
-  TvDetailResponse({
+  const TvDetailResponse({
     required this.backdropPath,
     required this.episodeRunTime,
     required this.firstAirDate,
@@ -30,7 +30,7 @@ class TvDetailResponse extends Equatable {
     required this.voteCount,
   });
 
-  final String backdropPath;
+  final String? backdropPath;
   final List<int> episodeRunTime;
   final String firstAirDate;
   final List<String> originCountry;
@@ -74,8 +74,9 @@ class TvDetailResponse extends Equatable {
         overview: json["overview"],
         popularity: json["popularity"].toDouble(),
         posterPath: json["poster_path"],
-        seasons: List<SeasonModel>.from(
-            json["seasons"].map((x) => SeasonModel.fromJson(x).toEntity())),
+        seasons: List<SeasonModel>.from((json["seasons"] as List)
+            .map((x) => SeasonModel.fromJson(x))
+            .where((element) => element.airDate != null)),
         status: json["status"],
         tagline: json["tagline"],
         type: json["type"],
@@ -111,21 +112,21 @@ class TvDetailResponse extends Equatable {
 
   TvDetail toEntity() {
     return TvDetail(
-      posterPath: this.posterPath,
-      popularity: this.popularity,
-      seasons: this.seasons.map((season) => season.toEntity()).toList(),
-      episodeRunTime: this.episodeRunTime,
-      id: this.id,
-      backdropPath: this.backdropPath,
-      voteAverage: this.voteAverage,
-      genres: this.genres.map((genre) => genre.toEntity()).toList(),
-      overview: this.overview,
-      firstAirDate: this.firstAirDate,
-      originCountry: this.originCountry,
-      originalLanguage: this.originalLanguage,
-      voteCount: this.voteCount,
-      name: this.name,
-      originalName: this.originalName,
+      posterPath: posterPath,
+      popularity: popularity,
+      seasons: seasons.map((season) => season.toEntity()).toList(),
+      episodeRunTime: episodeRunTime,
+      id: id,
+      backdropPath: backdropPath,
+      voteAverage: voteAverage,
+      genres: genres.map((genre) => genre.toEntity()).toList(),
+      overview: overview,
+      firstAirDate: firstAirDate,
+      originCountry: originCountry,
+      originalLanguage: originalLanguage,
+      voteCount: voteCount,
+      name: name,
+      originalName: originalName,
     );
   }
 

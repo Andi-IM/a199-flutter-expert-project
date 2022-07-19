@@ -2,7 +2,7 @@ import 'package:ditonton/domain/entities/season.dart';
 import 'package:equatable/equatable.dart';
 
 class SeasonModel extends Equatable {
-  SeasonModel({
+  const SeasonModel({
     required this.airDate,
     required this.episodeCount,
     required this.id,
@@ -12,7 +12,7 @@ class SeasonModel extends Equatable {
     required this.seasonNumber,
   });
 
-  final String airDate;
+  final String? airDate;
   final int episodeCount;
   final int id;
   final String name;
@@ -40,26 +40,24 @@ class SeasonModel extends Equatable {
         "season_number": seasonNumber,
       };
 
-  Season toEntity() {
-    return Season(
-      airDate: this.airDate,
-      episodeCount: this.episodeCount,
-      id: this.id,
-      name: this.name,
-      overview: this.overview,
-      posterPath: this.posterPath,
-      seasonNumber: this.seasonNumber,
-    );
-  }
+  Season toEntity() => Season(
+        airDate: airDate,
+        episodeCount: episodeCount,
+        id: id,
+        name: name,
+        overview: overview,
+        posterPath: posterPath,
+        seasonNumber: seasonNumber,
+      );
 
   @override
   List<Object?> get props => [
-    airDate,
-    episodeCount,
-    id,
-    name,
-    overview,
-    posterPath,
-    seasonNumber,
-  ];
+        airDate,
+        episodeCount,
+        id,
+        name,
+        overview,
+        posterPath,
+        seasonNumber,
+      ];
 }
