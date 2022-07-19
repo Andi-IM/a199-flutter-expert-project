@@ -1,5 +1,6 @@
 # a199-flutter-expert-project
-[![build-and-test](https://github.com/Andi-IM/a199-flutter-expert-project/actions/workflows/build-and-test.yaml/badge.svg)](https://github.com/Andi-IM/a199-flutter-expert-project/actions/workflows/build-and-test.yaml)
+[![Submission 1 Build](https://github.com/Andi-IM/a199-flutter-expert-project/actions/workflows/build-and-test.yaml/badge.svg?branch=submission-1)](https://github.com/Andi-IM/a199-flutter-expert-project/actions/workflows/build-and-test.yaml)
+[![Submission 2 Build](https://github.com/Andi-IM/a199-flutter-expert-project/actions/workflows/build-and-test.yaml/badge.svg?branch=main)](https://github.com/Andi-IM/a199-flutter-expert-project/actions/workflows/build-and-test.yaml)
 
 #### forked from [@dicoding](https://github.com/dicodingacademy)
 
